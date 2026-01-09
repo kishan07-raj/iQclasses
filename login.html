@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login – Study-IQ Classes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <!-- Lottie Player CDN for animation -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-orange-50 to-white min-h-screen font-inter flex items-center justify-center">
+
+  <div class="max-w-4xl w-full mx-auto bg-white/90 rounded-3xl shadow-2xl flex flex-col md:flex-row items-center overflow-hidden border border-indigo-100">
+    <!-- Animation Section -->
+    <div class="md:w-1/2 w-full flex flex-col items-center justify-center py-12 px-6 bg-gradient-to-br from-orange-100 via-indigo-100 to-white relative">
+      <!-- Working student/education theme animation -->
+      <lottie-player
+        src="https://assets1.lottiefiles.com/packages/lf20_ba0vazkz.json"
+        background="transparent"
+        speed="1"
+        style="width: 240px; height: 240px;"
+        loop
+        autoplay
+      ></lottie-player>
+      <h2 class="text-2xl font-extrabold text-indigo-700 mt-6 mb-2 text-center">Welcome Back!</h2>
+      <p class="text-gray-700 text-center mb-2">Log in to continue learning,<br><span class="text-orange-600 font-bold">Track your progress & earn badges!</span></p>
+    </div>
+    <!-- Form Section -->
+    <div class="md:w-1/2 w-full py-12 px-8 flex flex-col justify-center">
+      <h3 class="text-3xl font-bold text-indigo-800 mb-8 text-center">Login to Study-IQ</h3>
+      <form class="space-y-6">
+        <div>
+          <label class="block mb-2 font-semibold text-gray-700" for="email">Email or Username</label>
+          <input 
+            type="text"
+            id="email"
+            class="w-full px-5 py-3 border border-indigo-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 text-lg"
+            placeholder="Your Email or Username" 
+            required
+          >
+        </div>
+        <div>
+          <label class="block mb-2 font-semibold text-gray-700" for="password">Password</label>
+          <input 
+            type="password"
+            id="password"
+            class="w-full px-5 py-3 border border-indigo-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 text-lg"
+            placeholder="Your Password"
+            required
+          >
+        </div>
+        <div class="flex items-center justify-between">
+          <label class="flex items-center">
+            <input type="checkbox" class="form-checkbox h-5 w-5 text-orange-600" />
+            <span class="ml-2 text-gray-700">Remember me</span>
+          </label>
+          <a href="#" class="text-indigo-600 font-semibold hover:text-orange-500 transition">Forgot password?</a>
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-orange-500 to-indigo-600 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-105 transition"
+        >Login</button>
+      </form>
+      <div class="mt-8 flex flex-col gap-3 items-center">
+        <span class="text-gray-600 font-semibold">Or login with</span>
+        <div class="flex gap-6 text-3xl">
+          <a href="#" class="text-blue-600 hover:scale-110 transition"><i class="fab fa-facebook-square"></i></a>
+          <a href="#" class="text-red-600 hover:scale-110 transition"><i class="fab fa-google"></i></a>
+          <a href="#" class="text-indigo-700 hover:scale-110 transition"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="mt-8 text-center">
+        <span class="text-gray-700">New to Study-IQ?</span>
+        <a href="signup.html" class="text-orange-600 font-bold ml-1 hover:underline">Create account</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

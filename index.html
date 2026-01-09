@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study-IQ Classes - EdTech Best Homepage</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome (for icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <!-- Tailwind CSS CDN (for best design, fast demo) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Scroll animation keyframes (NEW) -->
+  <style>
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-up {
+      animation: fadeUp 0.7s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-indigo-50 via-white to-orange-100 font-inter">
+
+  <!-- Navbar -->
+  <nav class="bg-white/90 border-b border-indigo-100 fixed top-0 w-full z-50 shadow"
+       data-animate="fade-up">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="#" class="text-2xl font-extrabold text-indigo-600 tracking-tight">Study-IQ classes</a>
+      <div class="flex gap-8">
+        <a href="#" class="font-semibold text-indigo-700 hover:text-orange-600">Home</a>
+        <a href="dout.html" class="font-semibold text-indigo-700 hover:text-orange-600">doubt-solving</a>
+        <a href="course.html" class="font-semibold text-indigo-700 hover:text-orange-600">Courses</a>
+        <a href="about.html" class="font-semibold text-indigo-700 hover:text-orange-600">About</a>
+        <a href="contect.html" class="font-semibold text-indigo-700 hover:text-orange-600">Contact</a>
+        <a href="login.html" class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white rounded-lg font-bold px-6 py-2 shadow hover:scale-105 transition">Login / Signup</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-32 pb-14 md:pb-24"
+           data-animate="fade-up">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center px-6">
+      <div class="flex-1 text-center md:text-left">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-indigo-700 mb-6 leading-tight">
+          Transform Your Learning <br>
+          <span class="bg-gradient-to-r from-orange-500 to-indigo-600 bg-clip-text text-transparent">with AI + Live Teachers</span>
+        </h1>
+        <p class="text-xl text-gray-700 mb-7">
+          Fast doubt-solving, live classes, quizzes & badges—now in one place. Trusted by 50,000+ students.
+        </p>
+        <div class="flex gap-4 justify-center md:justify-start mb-6">
+          <a href="demo.html" class="bg-orange-500 text-white px-6 py-3 rounded-xl font-bold shadow hover:bg-red-600 transition">Join Free Demo</a>
+          <a href="dout.html" class="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold shadow hover:bg-indigo-800 transition">Ask a Doubt</a>
+        </div>
+        <div class="mt-4 flex gap-2 justify-center md:justify-start">
+          <span class="bg-green-100 text-green-700 px-4 py-1 rounded-full font-semibold shadow">🔥 Badges Earned</span>
+          <span class="bg-indigo-100 text-indigo-700 px-4 py-1 rounded-full font-semibold shadow">🥇 Daily Streak</span>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-center items-center mt-10 md:mt-0">
+        <!-- Replace with your image/Lottie animation -->
+        <img src="src/images/kishan5.png" alt="Student sitting at a desk using a laptop and taking notes, wearing headphones and appearing focused and engaged; bright home study area with soft natural light and a blurred background; no visible text" class="w-80 md:w-96 rounded-3xl shadow-xl">
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 bg-white"
+           data-animate="fade-up">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center text-indigo-700 mb-12">Why Study-IQ?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-lg p-8 flex flex-col items-center text-center hover:scale-105 transition">
+          <i class="fas fa-robot text-4xl text-indigo-600 mb-4"></i>
+          <h3 class="text-xl font-bold text-indigo-800 mb-2">AI Doubt Solver</h3>
+          <p class="text-gray-700">Get instant answers to any question!</p>
+        </div>
+        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-lg p-8 flex flex-col items-center text-center hover:scale-105 transition">
+          <i class="fas fa-video text-4xl text-indigo-600 mb-4"></i>
+          <h3 class="text-xl font-bold text-indigo-800 mb-2">Live Classes</h3>
+          <p class="text-gray-700">Attend live interactive classes daily.</p>
+        </div>
+        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-lg p-8 flex flex-col items-center text-center hover:scale-105 transition">
+          <i class="fas fa-pencil-alt text-4xl text-indigo-600 mb-4"></i>
+          <h3 class="text-xl font-bold text-indigo-800 mb-2">Auto-Graded Quizzes</h3>
+          <p class="text-gray-700">Practice with quizzes and see instant results.</p>
+        </div>
+        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-lg p-8 flex flex-col items-center text-center hover:scale-105 transition">
+          <i class="fas fa-award text-4xl text-indigo-600 mb-4"></i>
+          <h3 class="text-xl font-bold text-indigo-800 mb-2">Progress & Badges</h3>
+          <p class="text-gray-700">Earn badges and track your daily streak!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section Tag: Paste homepage ke beech ya jahan chahiye -->
+  <section class="w-screen max-w-none min-h-[60vh] py-12 bg-gradient-to-r from-orange-100 via-white to-indigo-100 flex flex-col items-center justify-center overflow-hidden"
+           data-animate="fade-up">
+    <div class="w-full mx-auto bg-white/95 rounded-2xl shadow-2xl flex flex-col items-center border border-indigo-100 relative px-0 md:px-8" style="max-width: 100vw;">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-8 w-full">
+        <span class="bg-gradient-to-r from-orange-500 via-indigo-700 to-orange-500 bg-clip-text text-transparent animate-pulse">
+          Learn from our YouTube Channel
+        </span>
+      </h2>
+      <!-- Loader animation -->
+      <div id="video-loading-channel" class="absolute left-0 right-0 mx-auto flex flex-col items-center justify-center" style="display: none;top:34%;">
+        <svg class="animate-spin h-10 w-10 text-orange-500 mb-3" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
+        </svg>
+        <span class="text-indigo-700 font-bold text-md">Loading next video...</span>
+      </div>
+      <!-- Full-width Youtube Video -->
+      <div class="w-screen aspect-video rounded-none overflow-hidden shadow mb-4" style="max-width: 100vw;">
+        <iframe
+          id="video-frame-channel"
+          class="w-full h-full"
+          src="https://www.youtube.com/embed/jfKfPfyJRdk?enablejsapi=1&autoplay=1"
+          title="YouTube video"
+          frameborder="0"
+          allow="autoplay; encrypted-media; fullscreen"
+          allowfullscreen
+          style="min-height:350px;"
+        ></iframe>
+      </div>
+      <!-- Progress bar -->
+      <div class="w-[95vw] h-3 bg-orange-100 rounded-full my-2 overflow-hidden">
+        <div id="video-progress-channel" class="h-full rounded-full bg-gradient-to-r from-orange-500 to-indigo-600 transition-all duration-500" style="width:0%"></div>
+      </div>
+      <div id="video-indicator-channel" class="text-gray-700 font-semibold text-lg text-center mt-2"></div>
+    </div>
+  </section>
+
+  <script>
+    // Use only public/unrestricted video IDs
+    const videoIdsChannel = [
+      "jfKfPfyJRdk",   // Pomodoro Music (Working public video)
+      "KxJW8aaaUPM",   // Youtube Official Test Video
+      "bD6QfMrCeJs",   // Motivational Video (replace as needed)
+      "gnbkV0De148",   // Example Video
+      "fg75BoQNnZ8"    // Example Video
+    ];
+    const playSecondsChannel = 20; // Kitne second baad next video dikhe
+    const frameChannel = document.getElementById("video-frame-channel");
+    const loadingChannel = document.getElementById("video-loading-channel");
+    const progressBarChannel = document.getElementById("video-progress-channel");
+    const indicatorChannel = document.getElementById("video-indicator-channel");
+    let currentIndexChannel = 0;
+    let intervalChannel = null;
+
+    function loadVideoChannel(idx) {
+      loadingChannel.style.display = "flex";
+      progressBarChannel.style.width = "0%";
+      indicatorChannel.innerText = `Video ${idx+1} / ${videoIdsChannel.length}`;
+      setTimeout(() => {
+        loadingChannel.style.display = "none";
+        const videoId = videoIdsChannel[idx];
+        frameChannel.src = `https://www.youtube.com/embed/${videoId}?enablejsapi=1&autoplay=1`;
+        animateProgressBarChannel();
+      }, 950); // loader speed
+    }
+
+    function animateProgressBarChannel() {
+      let elapsed = 0;
+      progressBarChannel.style.width = "0%";
+      clearInterval(intervalChannel);
+      intervalChannel = setInterval(() => {
+        elapsed += 0.2;
+        let percent = Math.min((elapsed / playSecondsChannel) * 100, 100);
+        progressBarChannel.style.width = percent + "%";
+        if (elapsed >= playSecondsChannel) {
+          clearInterval(intervalChannel);
+          nextVideoChannel();
+        }
+      }, 200);
+    }
+    function nextVideoChannel() {
+      currentIndexChannel = (currentIndexChannel + 1) % videoIdsChannel.length;
+      loadVideoChannel(currentIndexChannel);
+    }
+    window.onload = () => {
+      if (frameChannel) {
+        loadVideoChannel(currentIndexChannel);
+      }
+    };
+  </script>
+
+  <!-- Courses Section -->
+  <section class="py-16 bg-gradient-to-r from-orange-50 via-white to-indigo-50"
+           data-animate="fade-up">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-2xl font-bold text-center text-orange-600 mb-8">Popular Courses</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <!-- Example course cards -->
+        <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
+          <img src="https://images.unsplash.com/photo-1581092334904-1e7e8ce7a418?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
+          <h4 class="text-lg font-bold text-indigo-700 mb-2">Maths Booster</h4>
+          <p class="text-gray-700 text-sm mb-3">Board + Olympiad ke best modules.</p>
+          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+        </div>
+        <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
+          <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
+          <h4 class="text-lg font-bold text-indigo-700 mb-2">NEET Prep</h4>
+          <p class="text-gray-700 text-sm mb-3">Bio/Chemistry crash AI study set.</p>
+          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+        </div>
+        <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
+          <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
+          <h4 class="text-lg font-bold text-indigo-700 mb-2">Science Genius</h4>
+          <p class="text-gray-700 text-sm mb-3">Physics, coding, tech foundation.</p>
+          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+        </div>
+        <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
+          <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
+          <h4 class="text-lg font-bold text-indigo-700 mb-2">Coding for Kids</h4>
+          <p class="text-gray-700 text-sm mb-3">Start to code—fun games, challenge.</p>
+          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16 bg-white"
+           data-animate="fade-up">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-2xl font-bold text-indigo-700 mb-12">What Our Learners Say</h2>
+      <div class="flex flex-col md:flex-row gap-10 justify-center items-center">
+        <div class="bg-indigo-50 rounded-xl p-8 shadow-xl max-w-md mx-auto">
+          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Student" class="w-16 h-16 rounded-full mx-auto mb-4" />
+          <p class="text-gray-800 mb-2">"Chatbot se doubts instant clear ho gaye, marks improve ho gaye!"</p>
+          <span class="block font-bold text-indigo-600">Aditi Sharma, Class 10</span>
+        </div>
+        <div class="bg-orange-50 rounded-xl p-8 shadow-xl max-w-md mx-auto mt-10 md:mt-0">
+          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Student" class="w-16 h-16 rounded-full mx-auto mb-4" />
+          <p class="text-gray-800 mb-2">"Live classes se jaldi aur deeply samajh aaya!"</p>
+          <span class="block font-bold text-orange-600">Rohan Singh, NEET Aspirant</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="py-12 bg-gradient-to-l from-indigo-100 via-white to-orange-100 flex items-center justify-center"
+           data-animate="fade-up">
+    <div class="max-w-xl text-center">
+      <h2 class="text-3xl font-bold text-indigo-800 mb-5">Ready for the next level?</h2>
+      <p class="text-lg text-gray-700 mb-7">Start your free demo or ask an AI doubt now!</p>
+      <div class="flex justify-center gap-5">
+        <a href="#" class="bg-orange-500 text-white px-8 py-3 rounded-xl font-bold shadow hover:bg-orange-700 transition">Join Now</a>
+        <a href="#" class="bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold shadow hover:bg-indigo-800 transition">Ask AI Doubt</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white/90 border-t border-indigo-100 shadow-md mt-8"
+          data-animate="fade-up">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row text-center md:text-left justify-between items-center gap-5">
+      <span class="text-gray-600 font-semibold">© 2025 Study-IQ Classes BY RAVINDRA SIR. All rights reserved.</span>
+      <div class="flex gap-4 text-lg">
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll animation JS (NEW) -->
+  <script>
+    // Scroll animation: elements with data-animate="fade-up"
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0", "translate-y-5");
+            entry.target.classList.add("animate-fade-up");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+      }
+    );
+
+    document.querySelectorAll("[data-animate='fade-up']").forEach((el) => {
+      el.classList.add("opacity-0", "translate-y-5", "transition-all");
+      observer.observe(el);
+    });
+  </script>
+
+  <!-- Hero image parallax (NEW) -->
+  <script>
+    const heroImg = document.querySelector("section:nth-of-type(1) img");
+    window.addEventListener("scroll", () => {
+      if (!heroImg) return;
+      const offset = window.scrollY;
+      heroImg.style.transform = `translateY(${offset * 0.05}px)`;
+    });
+  </script>
+
+</body>
+</html>

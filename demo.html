@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Spoken English for Class 6–12 | Free Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg-gradient: radial-gradient(circle at top, #1f40ff, #050816 60%);
+      --hero-card-bg: rgba(10, 10, 25, 0.75);
+      --card-border: rgba(255, 255, 255, 0.18);
+      --accent-gradient: linear-gradient(120deg, #ff6b6b, #feca57, #17ead9, #7158e2);
+      --btn-shadow: 0 18px 35px rgba(0,0,0,0.45);
+      --glass-bg: rgba(255,255,255,0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg-gradient);
+      color: #f8f9ff;
+      overflow: hidden;
+    }
+
+    /* BACKGROUND: animated gradient + floating shapes */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 0% 0%, #ff6b6b33, transparent 55%),
+                  radial-gradient(circle at 100% 100%, #17ead933, transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.9;
+      animation: bgGlow 18s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes bgGlow {
+      0% { transform: translate3d(-40px, 0, 0) scale(1); }
+      100% { transform: translate3d(40px, -20px, 0) scale(1.1); }
+    }
+
+    .floating-shapes {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      list-style: none;
+      z-index: 1;
+    }
+
+    .floating-shapes li {
+      position: absolute;
+      bottom: -150px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 40% 60% 70% 30%;
+      animation: floatUp 24s linear infinite;
+      filter: blur(1px);
+    }
+
+    .floating-shapes li:nth-child(1) {
+      left: 10%;
+      width: 120px;
+      height: 120px;
+      animation-duration: 22s;
+      animation-delay: 0s;
+    }
+    .floating-shapes li:nth-child(2) {
+      left: 70%;
+      width: 180px;
+      height: 180px;
+      animation-duration: 26s;
+      animation-delay: 4s;
+    }
+    .floating-shapes li:nth-child(3) {
+      left: 40%;
+      width: 90px;
+      height: 90px;
+      animation-duration: 20s;
+      animation-delay: 8s;
+    }
+    .floating-shapes li:nth-child(4) {
+      left: 85%;
+      width: 130px;
+      height: 130px;
+      animation-duration: 28s;
+      animation-delay: 2s;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+        opacity: 0;
+      }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.6; }
+      100% {
+        transform: translate3d(0, -120vh, 0) rotate(180deg);
+        opacity: 0;
+      }
+    }
+
+    /* HERO CARD (glassmorphism) */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+      width: 100%;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 32px;
+      background: var(--hero-card-bg);
+      border-radius: 28px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      overflow: hidden;
+    }
+
+    .hero-left {
+      align-self: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #17ead9;
+      box-shadow: 0 0 12px #17ead9;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .hero-title span.highlight {
+      background-image: var(--accent-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-bottom: 18px;
+      max-width: 480px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .hero-points {
+      font-size: 13px;
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .hero-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+      opacity: 0.95;
+    }
+
+    .hero-points li span.icon {
+      font-size: 14px;
+      line-height: 1.2;
+    }
+
+    /* CTA BUTTON (mixed, magnetic + ripple) */
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .pro-cta-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 40px;
+      border-radius: 999px;
+      text-decoration: none;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.3);
+      box-shadow: var(--btn-shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      isolation: isolate;
+      color: #fff;
+      transform: translate3d(0,0,0);
+      transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1),
+                  box-shadow 0.4s ease;
+      will-change: transform;
+      animation: floatPulse 3s ease-in-out infinite;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .pro-cta-btn .btn-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--glass-bg);
+      z-index: 1;
+    }
+
+    .pro-cta-btn::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: var(--accent-gradient);
+      background-size: 300% 300%;
+      z-index: -2;
+      animation: borderFlow 4s linear infinite;
+    }
+
+    .pro-cta-btn::after {
+      content: "";
+      position: absolute;
+      inset: 3px;
+      border-radius: inherit;
+      background: radial-gradient(circle at top, #222 10%, #000);
+      z-index: -1;
+    }
+
+    .pro-cta-btn .btn-glow {
+      position: absolute;
+      inset: -40%;
+      background: var(--accent-gradient);
+      opacity: 0;
+      filter: blur(26px);
+      mix-blend-mode: screen;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+
+    .pro-cta-btn .btn-text {
+      position: relative;
+      z-index: 2;
+    }
+
+    .pro-cta-btn .btn-text::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #feca57, #17ead9);
+      transition: width 0.4s ease;
+    }
+
+    .pro-cta-btn .ripple {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: scale(0);
+      opacity: 0;
+      background: rgba(255,255,255,0.35);
+    }
+
+    .pro-cta-btn:hover {
+      box-shadow: 0 26px 60px rgba(0,0,0,0.55);
+    }
+
+    .pro-cta-btn:hover .btn-glow {
+      opacity: 1;
+    }
+
+    .pro-cta-btn:hover .btn-text::after {
+      width: 100%;
+    }
+
+    .pro-cta-btn:active {
+      transform: translate3d(0,2px,0) scale(0.97);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    @keyframes borderFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes floatPulse {
+      0%, 100% { transform: translate3d(0,0,0); }
+      50% { transform: translate3d(0,-4px,0); }
+    }
+
+    .cta-note {
+      font-size: 12px;
+      opacity: 0.85;
+    }
+
+    /* RIGHT SIDE: illustration-style card */
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .student-card {
+      position: relative;
+      width: 100%;
+      max-width: 260px;
+      aspect-ratio: 3/4;
+      border-radius: 24px;
+      background: linear-gradient(145deg, #141627, #1f2140);
+      border: 1px solid rgba(255,255,255,0.15);
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+    }
+
+    .student-card::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(circle at 10% 0%, #ff6b6b44, transparent 55%),
+                  radial-gradient(circle at 90% 100%, #17ead944, transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.8;
+    }
+
+    .student-avatar {
+      position: absolute;
+      left: 50%;
+      top: 26%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 20%, #fff, #f1f1f1 40%, #cfd9ff 80%);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .student-tag {
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.4);
+      font-size: 11px;
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+
+    .student-meta {
+      position: absolute;
+      bottom: 18px;
+      left: 16px;
+      right: 16px;
+      font-size: 11px;
+    }
+
+    .student-meta-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      opacity: 0.9;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 800px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+      .hero-right {
+        order: -1;
+        justify-content: flex-start;
+      }
+      .hero-title {
+        font-size: 26px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero {
+        padding: 16px;
+      }
+      .hero-content {
+        border-radius: 22px;
+        padding: 20px;
+      }
+      .hero-title {
+        font-size: 24px;
+      }
+      .pro-cta-btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <!-- animated floating shapes -->
+    <ul class="floating-shapes">
+      <li></li><li></li><li></li><li></li>
+    </ul>
+
+    <div class="hero-content">
+      <!-- LEFT TEXT -->
+      <div class="hero-left">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Live Spoken English • For Grades 6–12
+        </div>
+
+        <h1 class="hero-title">
+          Help your child <span class="highlight">speak English confidently</span> in school and real life.
+        </h1>
+
+        <p class="hero-subtitle">
+          Fun, interactive and practice-based Spoken English classes designed specially for students of Grade 6–12.
+          Build clear grammar, strong vocabulary and fearless speaking skills in just 30 minutes a day.
+        </p>
+
+        <div class="hero-badges">
+          <span class="badge">Age 11–18</span>
+          <span class="badge">School-focused topics</span>
+          <span class="badge">Weekly speaking practice</span>
+          <span class="badge">Beginner to confident speaker</span>
+        </div>
+
+        <ul class="hero-points">
+          <li><span class="icon">✔</span> Simple explanations with examples from school and everyday life.</li>
+          <li><span class="icon">✔</span> Practice real conversations: introductions, exams, interviews and stage speaking.</li>
+          <li><span class="icon">✔</span> Small batches, live doubt-solving and personal feedback for every student.</li>
+        </ul>
+
+        <div class="cta-row">
+          <!-- CTA BUTTON -->
+          <a href="#free-demo" class="pro-cta-btn" id="demoBtn">
+            <span class="btn-bg"></span>
+            <span class="btn-glow"></span>
+            <span class="btn-text">Join Free Demo</span>
+            <span class="ripple"></span>
+          </a>
+
+          <p class="cta-note">No payment needed now – 30‑minute live demo class for parents & students.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT VISUAL -->
+      <div class="hero-right">
+        <div class="student-card">
+          <div class="student-avatar">🧑‍🎓</div>
+          <div class="student-tag">“I started speaking English in class without fear.”</div>
+
+          <div class="student-meta">
+            <div class="student-meta-row">
+              <span class="chip"><span>⭐</span> Rated 4.9/5 by parents</span>
+            </div>
+            <div class="student-meta-row">
+              <span class="chip"><span>⏱</span> 30‑minute live sessions</span>
+              <span class="chip"><span>🎯</span> School + Spoken focus</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JavaScript: magnetic + ripple -->
+  <script>
+    const btn = document.getElementById("demoBtn");
+    const rippleEl = btn.querySelector(".ripple");
+    const magneticStrength = 25;
+
+    // Magnetic hover
+    btn.addEventListener("mousemove", (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const moveX = x / magneticStrength;
+      const moveY = y / magneticStrength;
+      btn.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
+    });
+
+    btn.addEventListener("mouseleave", () => {
+      btn.style.transform = "translate3d(0,0,0)";
+    });
+
+    // Ripple on click
+    btn.addEventListener("click", (e) => {
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height) * 2;
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+
+      rippleEl.style.width = rippleEl.style.height = size + "px";
+      rippleEl.style.left = x + "px";
+      rippleEl.style.top = y + "px";
+
+      rippleEl.style.transition = "none";
+      rippleEl.style.transform = "scale(0)";
+      rippleEl.style.opacity = "0.7";
+
+      requestAnimationFrame(() => {
+        rippleEl.style.transition = "transform 0.6s ease-out, opacity 0.6s ease-out";
+        rippleEl.style.transform = "scale(1)";
+        rippleEl.style.opacity = "0";
+      });
+    });
+  </script>
+</body>
+</html>
