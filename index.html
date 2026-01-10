@@ -35,13 +35,38 @@
        data-animate="fade-up">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
       <a href="#" class="text-2xl font-extrabold text-indigo-600 tracking-tight">Study-IQ classes</a>
-      <div class="flex gap-8">
+
+      <!-- Desktop menu -->
+      <div class="hidden md:flex gap-8">
         <a href="#" class="font-semibold text-indigo-700 hover:text-orange-600">Home</a>
         <a href="dout.html" class="font-semibold text-indigo-700 hover:text-orange-600">doubt-solving</a>
         <a href="course.html" class="font-semibold text-indigo-700 hover:text-orange-600">Courses</a>
         <a href="about.html" class="font-semibold text-indigo-700 hover:text-orange-600">About</a>
         <a href="contect.html" class="font-semibold text-indigo-700 hover:text-orange-600">Contact</a>
         <a href="login.html" class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white rounded-lg font-bold px-6 py-2 shadow hover:scale-105 transition">Login / Signup</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="nav-toggle"
+              class="md:hidden text-2xl text-indigo-700 focus:outline-none"
+              aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown menu -->
+    <div id="mobile-menu"
+         class="md:hidden hidden border-t border-indigo-100 bg-white/95">
+      <div class="px-6 py-3 flex flex-col gap-3">
+        <a href="#" class="font-semibold text-indigo-700 hover:text-orange-600">Home</a>
+        <a href="dout.html" class="font-semibold text-indigo-700 hover:text-orange-600">doubt-solving</a>
+        <a href="course.html" class="font-semibold text-indigo-700 hover:text-orange-600">Courses</a>
+        <a href="about.html" class="font-semibold text-indigo-700 hover:text-orange-600">About</a>
+        <a href="contect.html" class="font-semibold text-indigo-700 hover:text-orange-600">Contact</a>
+        <a href="login.html"
+           class="mt-1 bg-gradient-to-r from-orange-500 to-indigo-600 text-white rounded-lg font-bold px-4 py-2 shadow hover:scale-[1.02] transition">
+          Login / Signup
+        </a>
       </div>
     </div>
   </nav>
@@ -310,6 +335,23 @@
       const offset = window.scrollY;
       heroImg.style.transform = `translateY(${offset * 0.05}px)`;
     });
+  </script>
+
+  <!-- Mobile nav toggle script -->
+  <script>
+    const navToggle = document.getElementById("nav-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (navToggle && mobileMenu) {
+      navToggle.addEventListener("click", () => {
+        const isHidden = mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden");
+        navToggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
+        navToggle.innerHTML = isHidden
+          ? '<i class="fa-solid fa-xmark"></i>'
+          : '<i class="fa-solid fa-bars"></i>';
+      });
+    }
   </script>
 
 </body>
