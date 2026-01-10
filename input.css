@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom cinematic styles */
+.btn-cinematic {
+  @apply bg-gradient-to-r from-brandOrange to-brandIndigo text-white font-bold py-3 rounded-xl shadow-cinematic hover:scale-105 transition;
+}
+
+.card-cinematic {
+  @apply bg-white/90 rounded-3xl shadow-cinematic border border-brandIndigo/20;
+}
