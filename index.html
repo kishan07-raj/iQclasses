@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
   <!-- Tailwind CSS CDN (for best design, fast demo) -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <!-- Scroll animation keyframes (NEW) -->
   <style>
@@ -35,13 +37,38 @@
        data-animate="fade-up">
     <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
       <a href="#" class="text-2xl font-extrabold text-indigo-600 tracking-tight">Study-IQ classes</a>
-      <div class="flex gap-8">
+
+      <!-- Desktop menu -->
+      <div class="hidden md:flex gap-8">
         <a href="#" class="font-semibold text-indigo-700 hover:text-orange-600">Home</a>
         <a href="dout.html" class="font-semibold text-indigo-700 hover:text-orange-600">doubt-solving</a>
         <a href="course.html" class="font-semibold text-indigo-700 hover:text-orange-600">Courses</a>
         <a href="about.html" class="font-semibold text-indigo-700 hover:text-orange-600">About</a>
-        <a href="contect.html" class="font-semibold text-indigo-700 hover:text-orange-600">Contact</a>
+        <a href="contact.html" class="font-semibold text-indigo-700 hover:text-orange-600">Contact</a>
         <a href="login.html" class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white rounded-lg font-bold px-6 py-2 shadow hover:scale-105 transition">Login / Signup</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button id="nav-toggle"
+              class="md:hidden text-2xl text-indigo-700 focus:outline-none"
+              aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown menu -->
+    <div id="mobile-menu"
+         class="md:hidden hidden border-t border-indigo-100 bg-white/95">
+      <div class="px-6 py-3 flex flex-col gap-3">
+        <a href="#" class="font-semibold text-indigo-700 hover:text-orange-600">Home</a>
+        <a href="dout.html" class="font-semibold text-indigo-700 hover:text-orange-600">doubt-solving</a>
+        <a href="course.html" class="font-semibold text-indigo-700 hover:text-orange-600">Courses</a>
+        <a href="about.html" class="font-semibold text-indigo-700 hover:text-orange-600">About</a>
+        <a href="contact.html" class="font-semibold text-indigo-700 hover:text-orange-600">Contact</a>
+        <a href="login.html"
+           class="mt-1 bg-gradient-to-r from-orange-500 to-indigo-600 text-white rounded-lg font-bold px-4 py-2 shadow hover:scale-[1.02] transition">
+          Login / Signup
+        </a>
       </div>
     </div>
   </nav>
@@ -59,8 +86,8 @@
           Fast doubt-solving, live classes, quizzes & badges—now in one place. Trusted by 50,000+ students.
         </p>
         <div class="flex gap-4 justify-center md:justify-start mb-6">
-          <a href="demo.html" class="bg-orange-500 text-white px-6 py-3 rounded-xl font-bold shadow hover:bg-red-600 transition">Join Free Demo</a>
-          <a href="dout.html" class="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold shadow hover:bg-indigo-800 transition">Ask a Doubt</a>
+          <a href="demo.html" class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-bold shadow hover:scale-105 transition">Join Free Demo</a>
+          <a href="dout.html" class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-bold shadow hover:scale-105 transition">Ask a Doubt</a>
         </div>
         <div class="mt-4 flex gap-2 justify-center md:justify-start">
           <span class="bg-green-100 text-green-700 px-4 py-1 rounded-full font-semibold shadow">🔥 Badges Earned</span>
@@ -80,22 +107,22 @@
     <div class="max-w-7xl mx-auto px-6">
       <h2 class="text-3xl font-bold text-center text-indigo-700 mb-12">Why Study-IQ?</h2>
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-lg p-8 flex flex-col items-center text-center hover:scale-105 transition">
+        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 transition">
           <i class="fas fa-robot text-4xl text-indigo-600 mb-4"></i>
           <h3 class="text-xl font-bold text-indigo-800 mb-2">AI Doubt Solver</h3>
           <p class="text-gray-700">Get instant answers to any question!</p>
         </div>
-        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-lg p-8 flex flex-col items-center text-center hover:scale-105 transition">
+        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 transition">
           <i class="fas fa-video text-4xl text-indigo-600 mb-4"></i>
           <h3 class="text-xl font-bold text-indigo-800 mb-2">Live Classes</h3>
           <p class="text-gray-700">Attend live interactive classes daily.</p>
         </div>
-        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-lg p-8 flex flex-col items-center text-center hover:scale-105 transition">
+        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 transition">
           <i class="fas fa-pencil-alt text-4xl text-indigo-600 mb-4"></i>
           <h3 class="text-xl font-bold text-indigo-800 mb-2">Auto-Graded Quizzes</h3>
           <p class="text-gray-700">Practice with quizzes and see instant results.</p>
         </div>
-        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-lg p-8 flex flex-col items-center text-center hover:scale-105 transition">
+        <div class="bg-gradient-to-br from-indigo-100 to-orange-100 rounded-xl shadow-xl p-8 flex flex-col items-center text-center hover:scale-105 transition">
           <i class="fas fa-award text-4xl text-indigo-600 mb-4"></i>
           <h3 class="text-xl font-bold text-indigo-800 mb-2">Progress & Badges</h3>
           <p class="text-gray-700">Earn badges and track your daily streak!</p>
@@ -204,28 +231,28 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         <!-- Example course cards -->
         <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
-          <img src="https://images.unsplash.com/photo-1581092334904-1e7e8ce7a418?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
+          <img src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=600&q=80" alt="Maths equations and formulas on a chalkboard" class="w-full h-32 object-cover rounded-lg mb-4" />
           <h4 class="text-lg font-bold text-indigo-700 mb-2">Maths Booster</h4>
           <p class="text-gray-700 text-sm mb-3">Board + Olympiad ke best modules.</p>
-          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+          <a href="#" class="mt-auto bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-4 py-2 rounded-xl font-semibold shadow hover:scale-105 transition">Explore Course</a>
         </div>
         <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
           <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
           <h4 class="text-lg font-bold text-indigo-700 mb-2">NEET Prep</h4>
           <p class="text-gray-700 text-sm mb-3">Bio/Chemistry crash AI study set.</p>
-          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+          <a href="#" class="mt-auto bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-4 py-2 rounded-xl font-semibold shadow hover:scale-105 transition">Explore Course</a>
         </div>
         <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
           <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
           <h4 class="text-lg font-bold text-indigo-700 mb-2">Science Genius</h4>
           <p class="text-gray-700 text-sm mb-3">Physics, coding, tech foundation.</p>
-          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+          <a href="#" class="mt-auto bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-4 py-2 rounded-xl font-semibold shadow hover:scale-105 transition">Explore Course</a>
         </div>
         <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
           <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
           <h4 class="text-lg font-bold text-indigo-700 mb-2">Coding for Kids</h4>
           <p class="text-gray-700 text-sm mb-3">Start to code—fun games, challenge.</p>
-          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+          <a href="#" class="mt-auto bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-4 py-2 rounded-xl shadow hover:scale-105 transition font-semibold">Explore Course</a>
         </div>
       </div>
     </div>
@@ -258,8 +285,8 @@
       <h2 class="text-3xl font-bold text-indigo-800 mb-5">Ready for the next level?</h2>
       <p class="text-lg text-gray-700 mb-7">Start your free demo or ask an AI doubt now!</p>
       <div class="flex justify-center gap-5">
-        <a href="#" class="bg-orange-500 text-white px-8 py-3 rounded-xl font-bold shadow hover:bg-orange-700 transition">Join Now</a>
-        <a href="#" class="bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold shadow hover:bg-indigo-800 transition">Ask AI Doubt</a>
+        <a href="#" class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-8 py-3 rounded-xl font-bold shadow hover:scale-105 transition">Join Now</a>
+        <a href="#" class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-8 py-3 rounded-xl font-bold shadow hover:scale-105 transition">Ask AI Doubt</a>
       </div>
     </div>
   </section>
@@ -310,6 +337,23 @@
       const offset = window.scrollY;
       heroImg.style.transform = `translateY(${offset * 0.05}px)`;
     });
+  </script>
+
+  <!-- Mobile nav toggle script -->
+  <script>
+    const navToggle = document.getElementById("nav-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (navToggle && mobileMenu) {
+      navToggle.addEventListener("click", () => {
+        const isHidden = mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden");
+        navToggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
+        navToggle.innerHTML = isHidden
+          ? '<i class="fa-solid fa-xmark"></i>'
+          : '<i class="fa-solid fa-bars"></i>';
+      });
+    }
   </script>
 
 </body>
