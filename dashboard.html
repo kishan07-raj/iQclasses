@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard – Study-IQ Classes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-white to-orange-50 font-inter">
+
+  <!-- Navbar -->
+  <nav class="bg-white/90 border-b border-indigo-100 fixed top-0 w-full z-50 shadow">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="index.html" class="text-2xl font-extrabold text-indigo-600">Study-IQ</a>
+      <div class="flex gap-8">
+        <a href="index.html" class="font-semibold text-indigo-700">Home</a>
+        <a href="course.html" class="font-semibold text-indigo-700">Courses</a>
+        <a href="about.html" class="font-semibold text-indigo-700">About</a>
+        <a href="contact.html" class="font-semibold text-indigo-700">Contact</a>
+        <div id="parent-links" class="hidden gap-4">
+          <a href="parent-dashboard.html" class="font-semibold text-indigo-700">Parent Dashboard</a>
+          <a href="payment.html" class="font-semibold text-indigo-700">Payments</a>
+        </div>
+        <button id="logout" class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white rounded-lg font-bold px-6 py-2 shadow hover:scale-105 transition">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Dashboard Header -->
+  <section class="pt-32 pb-10 text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="text-5xl font-bold text-indigo-700 mb-3" id="dashboard-title">Student Dashboard</h1>
+      <p class="text-lg text-gray-700 mb-7" id="dashboard-subtitle">Track your progress, maintain your streak, and earn badges!</p>
+    </div>
+  </section>
+
+  <!-- Admin Panel -->
+  <section id="admin-panel" class="py-16 bg-gradient-to-r from-red-50 to-orange-50 hidden">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-red-600 mb-8 text-center">🔥 Admin Control Panel</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Manage Users -->
+        <div class="bg-white rounded-xl shadow-xl p-6 text-center">
+          <i class="fas fa-users text-4xl text-indigo-600 mb-4"></i>
+          <h3 class="text-xl font-bold text-indigo-700 mb-4">Manage Users</h3>
+          <p class="text-gray-600 mb-4">View and manage all users</p>
+          <button class="bg-gradient-to-r from-indigo-500 to-blue-600 text-white px-4 py-2 rounded-xl font-semibold hover:scale-105 transition">View Users</button>
+        </div>
+        <!-- Manage Courses -->
+        <div class="bg-white rounded-xl shadow-xl p-6 text-center">
+          <i class="fas fa-book text-4xl text-green-600 mb-4"></i>
+          <h3 class="text-xl font-bold text-indigo-700 mb-4">Manage Courses</h3>
+          <p class="text-gray-600 mb-4">Create and edit courses</p>
+          <button class="bg-gradient-to-r from-green-500 to-teal-600 text-white px-4 py-2 rounded-xl font-semibold hover:scale-105 transition">Manage Courses</button>
+        </div>
+        <!-- View Reports -->
+        <div class="bg-white rounded-xl shadow-xl p-6 text-center">
+          <i class="fas fa-chart-bar text-4xl text-orange-600 mb-4"></i>
+          <h3 class="text-xl font-bold text-indigo-700 mb-4">View Reports</h3>
+          <p class="text-gray-600 mb-4">Analytics and insights</p>
+          <button class="bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 py-2 rounded-xl font-semibold hover:scale-105 transition">View Reports</button>
+        </div>
+        <!-- System Settings -->
+        <div class="bg-white rounded-xl shadow-xl p-6 text-center">
+          <i class="fas fa-cog text-4xl text-gray-600 mb-4"></i>
+          <h3 class="text-xl font-bold text-indigo-700 mb-4">System Settings</h3>
+          <p class="text-gray-600 mb-4">Configure system options</p>
+          <button class="bg-gradient-to-r from-gray-500 to-gray-700 text-white px-4 py-2 rounded-xl font-semibold hover:scale-105 transition">Settings</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enrolled Courses -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-orange-600 mb-8 text-center">Enrolled Courses</h2>
+      <div id="courses" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Courses will be loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Resume Learning -->
+  <section class="py-16 bg-gradient-to-r from-orange-50 to-indigo-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-indigo-600 mb-8 text-center">Resume Learning</h2>
+      <div id="resume-learning" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Resume learning items will be loaded here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 bg-gradient-to-r from-indigo-50 to-orange-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Daily Study Streak -->
+        <div class="bg-white rounded-xl shadow-xl p-8 text-center">
+          <i class="fas fa-fire text-4xl text-orange-600 mb-4"></i>
+          <h3 class="text-2xl font-bold text-indigo-700 mb-2">Daily Study Streak</h3>
+          <p id="streak" class="text-4xl font-extrabold text-orange-600">0</p>
+          <p class="text-gray-700">days</p>
+        </div>
+        <!-- Badges Earned -->
+        <div class="bg-white rounded-xl shadow-xl p-8 text-center">
+          <i class="fas fa-award text-4xl text-indigo-600 mb-4"></i>
+          <h3 class="text-2xl font-bold text-indigo-700 mb-2">Badges Earned</h3>
+          <p id="badges" class="text-4xl font-extrabold text-indigo-600">0</p>
+          <p class="text-gray-700">badges</p>
+        </div>
+        <!-- Doubts Asked -->
+        <div class="bg-white rounded-xl shadow-xl p-8 text-center">
+          <i class="fas fa-question-circle text-4xl text-green-600 mb-4"></i>
+          <h3 class="text-2xl font-bold text-indigo-700 mb-2">Doubts Asked</h3>
+          <p id="doubts" class="text-4xl font-extrabold text-green-600">0</p>
+          <p class="text-gray-700">questions</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gamification Section -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-orange-600 mb-8 text-center">Your Progress & Achievements</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        <!-- XP and Level -->
+        <div class="bg-white rounded-xl shadow-xl p-8">
+          <h3 class="text-2xl font-bold text-indigo-700 mb-6">Experience Points</h3>
+          <div class="text-center mb-6">
+            <div class="text-6xl font-extrabold text-orange-600 mb-2" id="xp">0</div>
+            <div class="text-lg text-gray-600">XP Points</div>
+          </div>
+          <div class="mb-4">
+            <div class="flex justify-between text-sm text-gray-700 mb-2">
+              <span>Level <span id="level">1</span> - <span id="level-name">Beginner</span></span>
+              <span id="xp-progress">0 / 100 XP</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+              <div id="xp-bar" class="bg-gradient-to-r from-orange-500 to-indigo-600 h-4 rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="text-sm text-gray-600">Next Level: <span id="xp-needed">100</span> XP needed</div>
+          </div>
+        </div>
+        <!-- Recent Achievements -->
+        <div class="bg-white rounded-xl shadow-xl p-8">
+          <h3 class="text-2xl font-bold text-indigo-700 mb-6">Recent Achievements</h3>
+          <div id="achievements" class="space-y-4">
+            <!-- Achievements will be loaded here -->
+            <p class="text-gray-500">No achievements yet. Keep learning to earn badges!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leaderboard -->
+      <div class="bg-white rounded-xl shadow-xl p-8 mb-8">
+        <h3 class="text-2xl font-bold text-indigo-700 mb-6 text-center">🏆 Leaderboard</h3>
+        <div id="leaderboard" class="space-y-3">
+          <!-- Leaderboard will be loaded here -->
+          <p class="text-gray-500 text-center">Loading leaderboard...</p>
+        </div>
+      </div>
+
+      <!-- Badges Collection -->
+      <div class="bg-white rounded-xl shadow-xl p-8">
+        <h3 class="text-2xl font-bold text-indigo-700 mb-6 text-center">Badge Collection</h3>
+        <div id="badges-collection" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <!-- Badges will be loaded here -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiz Analytics Section -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-orange-600 mb-8 text-center">📊 Quiz Performance</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Topic-wise Scores -->
+        <div class="bg-white rounded-xl shadow-xl p-8">
+          <h3 class="text-2xl font-bold text-indigo-700 mb-6">Topic-wise Performance</h3>
+          <div id="topic-scores" class="space-y-4">
+            <!-- Topic scores will be loaded here -->
+            <p class="text-gray-500">No quiz results yet. Take a quiz to see your performance!</p>
+          </div>
+        </div>
+        <!-- Weak Areas -->
+        <div class="bg-white rounded-xl shadow-xl p-8">
+          <h3 class="text-2xl font-bold text-indigo-700 mb-6">Areas for Improvement</h3>
+          <div id="weak-areas" class="space-y-4">
+            <!-- Weak areas will be loaded here -->
+            <p class="text-gray-500">No weak areas identified yet. Keep practicing!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Discussion Forum Section -->
+  <section class="py-16 bg-gradient-to-r from-orange-50 to-indigo-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-indigo-600 mb-8 text-center">Discussion Forum</h2>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Recent Posts -->
+        <div class="bg-white rounded-xl shadow-xl p-8">
+          <h3 class="text-2xl font-bold text-indigo-700 mb-6">Recent Posts</h3>
+          <div id="recent-posts" class="space-y-4">
+            <!-- Recent posts will be loaded here -->
+            <p class="text-gray-500">Loading recent posts...</p>
+          </div>
+          <button onclick="window.location.href='forum.html'" class="mt-6 bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition">View All Posts</button>
+        </div>
+        <!-- Forum Stats -->
+        <div class="bg-white rounded-xl shadow-xl p-8">
+          <h3 class="text-2xl font-bold text-indigo-700 mb-6">Forum Activity</h3>
+          <div id="forum-stats" class="space-y-4">
+            <!-- Forum stats will be loaded here -->
+            <div class="flex items-center justify-between">
+              <span class="text-gray-700">Total Posts</span>
+              <span id="total-posts" class="font-bold text-indigo-600">0</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-700">Your Posts</span>
+              <span id="user-posts" class="font-bold text-indigo-600">0</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-gray-700">Your Comments</span>
+              <span id="user-comments" class="font-bold text-indigo-600">0</span>
+            </div>
+          </div>
+          <button onclick="window.location.href='forum.html'" class="mt-6 bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition w-full">Ask a Question</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white/90 border-t border-indigo-100 shadow-md mt-8">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row text-center md:text-left justify-between items-center gap-5">
+      <span class="text-gray-600 font-semibold">© 2025 Study-IQ Classes. All rights reserved.</span>
+      <div class="flex gap-4 text-lg">
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) {
+      window.location.href = 'login.html';
+    }
+
+    // Fetch dashboard data
+    async function loadDashboard() {
+      try {
+        const response = await fetch('http://localhost:3000/api/dashboard', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await response.json();
+        if (response.ok) {
+          const role = localStorage.getItem('role');
+          if (role === 'admin') {
+            // Show admin panel
+            document.getElementById('admin-panel').classList.remove('hidden');
+            document.getElementById('dashboard-title').textContent = 'Admin Dashboard';
+            document.getElementById('dashboard-subtitle').textContent = 'Manage the platform and oversee all activities!';
+            // Hide student-specific sections
+            document.querySelector('section:nth-of-type(3)').style.display = 'none'; // Enrolled Courses
+            document.querySelector('section:nth-of-type(4)').style.display = 'none'; // Resume Learning
+            document.querySelector('section:nth-of-type(5)').style.display = 'none'; // Stats Section
+            document.querySelector('section:nth-of-type(6)').style.display = 'none'; // Gamification Section
+            document.querySelector('section:nth-of-type(7)').style.display = 'none'; // Quiz Analytics
+            document.querySelector('section:nth-of-type(8)').style.display = 'none'; // Discussion Forum
+          } else {
+            // Student dashboard
+            displayCourses(data.enrolledCourses);
+            document.getElementById('streak').textContent = data.streak;
+            document.getElementById('badges').textContent = data.badges;
+            document.getElementById('doubts').textContent = data.doubts;
+
+            // Load additional data
+            loadQuizAnalytics();
+            loadLiveClasses();
+            loadAttendanceHistory();
+            loadForumData();
+            loadGamificationData();
+          }
+        } else {
+          alert('Failed to load dashboard: ' + data.message);
+        }
+      } catch (error) {
+        console.error('Error loading dashboard:', error);
+      }
+    }
+
+    // Load forum data for dashboard
+    async function loadForumData() {
+      try {
+        const response = await fetch('http://localhost:3000/api/forum/posts', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+          const posts = await response.json();
+          const recentPosts = posts.slice(0, 3); // Show last 3 posts
+          displayRecentPosts(recentPosts);
+
+          // Forum stats
+          const userPosts = posts.filter(p => p.authorId === parseInt(localStorage.getItem('userId'))).length;
+          const userComments = posts.reduce((acc, p) => acc + p.comments.filter(c => c.authorId === parseInt(localStorage.getItem('userId'))).length, 0);
+          document.getElementById('total-posts').textContent = posts.length;
+          document.getElementById('user-posts').textContent = userPosts;
+          document.getElementById('user-comments').textContent = userComments;
+        }
+      } catch (error) {
+        console.error('Error loading forum data:', error);
+      }
+    }
+
+    function displayRecentPosts(posts) {
+      const container = document.getElementById('recent-posts');
+      container.innerHTML = posts.length ? posts.map(post => `
+        <div class="bg-gray-50 rounded-lg p-4">
+          <h4 class="font-semibold text-indigo-700">${post.title}</h4>
+          <p class="text-gray-600 text-sm mt-1">${post.content.substring(0, 100)}...</p>
+          <div class="flex justify-between items-center mt-2 text-xs text-gray-500">
+            <span>By ${post.authorName}</span>
+            <span>${new Date(post.createdAt).toLocaleDateString()}</span>
+          </div>
+        </div>
+      `).join('') : '<p class="text-gray-500">No recent posts.</p>';
+    }
+
+    function displayCourses(courses) {
+      const coursesDiv = document.getElementById('courses');
+      coursesDiv.innerHTML = courses.map(course => `
+        <div class="bg-white rounded-xl shadow-xl p-6">
+          <h3 class="text-xl font-bold text-indigo-700 mb-4">${course.name}</h3>
+          <div class="mb-4">
+            <div class="flex justify-between text-sm text-gray-700 mb-1">
+              <span>Progress</span>
+              <span>${course.progress}%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+              <div class="bg-gradient-to-r from-orange-500 to-indigo-600 h-4 rounded-full" style="width: ${course.progress}%"></div>
+            </div>
+          </div>
+          <button class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-4 py-2 rounded-xl font-semibold hover:scale-105 transition" onclick="updateProgress(${course.id})">Update Progress</button>
+        </div>
+      `).join('');
+    }
+
+    function displayResumeLearning(courses) {
+      const resumeDiv = document.getElementById('resume-learning');
+      const resumeItems = courses.filter(course => course.lastLesson).map(course => {
+        // For demo, we'll show the last lesson title (in real app, fetch from API)
+        const lessonTitle = `Last Lesson in ${course.name}`;
+        return `
+          <div class="bg-white rounded-xl shadow-xl p-6">
+            <h3 class="text-xl font-bold text-indigo-700 mb-4">${course.name}</h3>
+            <p class="text-gray-700 mb-4">${lessonTitle}</p>
+            <button class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-4 py-2 rounded-xl font-semibold hover:scale-105 transition" onclick="resumeCourse(${course.id})">Resume Learning</button>
+          </div>
+        `;
+      });
+      resumeDiv.innerHTML = resumeItems.length ? resumeItems.join('') : '<p class="text-gray-500">No courses to resume yet.</p>';
+    }
+
+    function resumeCourse(courseId) {
+      window.location.href = `course-detail.html?courseId=${courseId}`;
+    }
+
+    async function updateProgress(courseId) {
+      const progress = prompt('Enter new progress (0-100):');
+      if (progress !== null && progress >= 0 && progress <= 100) {
+        try {
+          const response = await fetch('http://localhost:3000/api/progress', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ courseId, progress: parseInt(progress) })
+          });
+          if (response.ok) {
+            loadDashboard();
+          } else {
+            alert('Failed to update progress');
+          }
+        } catch (error) {
+          console.error('Error updating progress:', error);
+        }
+      }
+    }
+
+    // Load gamification data
+    async function loadGamificationData() {
+      try {
+        // Load gamification stats
+        const gamificationResponse = await fetch('http://localhost:3000/api/gamification', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (gamificationResponse.ok) {
+          const gamificationData = await gamificationResponse.json();
+          displayGamificationData(gamificationData);
+        }
+
+        // Load leaderboard
+        const leaderboardResponse = await fetch('http://localhost:3000/api/leaderboard', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (leaderboardResponse.ok) {
+          const leaderboardData = await leaderboardResponse.json();
+          displayLeaderboard(leaderboardData);
+        }
+
+        // Load badges
+        const badgesResponse = await fetch('http://localhost:3000/api/badges', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (badgesResponse.ok) {
+          const badgesData = await badgesResponse.json();
+          displayBadges(badgesData);
+        }
+      } catch (error) {
+        console.error('Error loading gamification data:', error);
+      }
+    }
+
+    function displayGamificationData(data) {
+      document.getElementById('xp').textContent = data.xp;
+      document.getElementById('level').textContent = data.level;
+      document.getElementById('level-name').textContent = data.levelName;
+      document.getElementById('xp-progress').textContent = `${data.xp - (data.level > 1 ? LEVELS[data.level - 2].xpRequired : 0)} / ${data.xpForNextLevel} XP`;
+      document.getElementById('xp-needed').textContent = data.xpForNextLevel;
+
+      // Calculate progress bar percentage
+      const currentLevelXP = data.level > 1 ? LEVELS[data.level - 2].xpRequired : 0;
+      const nextLevelXP = LEVELS[data.level - 1].xpRequired;
+      const progressPercent = ((data.xp - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100;
+      document.getElementById('xp-bar').style.width = `${Math.min(progressPercent, 100)}%`;
+
+      // Display achievements
+      if (data.achievements && data.achievements.length > 0) {
+        const achievementsHTML = data.achievements.slice(-3).reverse().map(achievement => `
+          <div class="bg-gradient-to-r from-orange-50 to-indigo-50 rounded-lg p-4 border border-indigo-100">
+            <div class="flex items-center gap-3">
+              <div class="text-2xl">${achievement.icon}</div>
+              <div>
+                <h4 class="font-semibold text-indigo-700">${achievement.name}</h4>
+                <p class="text-sm text-gray-600">${achievement.description}</p>
+                <p class="text-xs text-gray-500">Earned ${new Date(achievement.earnedAt).toLocaleDateString()}</p>
+              </div>
+            </div>
+          </div>
+        `).join('');
+        document.getElementById('achievements').innerHTML = achievementsHTML;
+      }
+    }
+
+    function displayLeaderboard(leaderboard) {
+      const leaderboardHTML = leaderboard.map((user, index) => `
+        <div class="flex items-center justify-between bg-gray-50 rounded-lg p-4 ${index === 0 ? 'bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300' : ''}">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-r from-orange-500 to-indigo-600 text-white flex items-center justify-center font-bold text-sm">
+              ${index + 1}
+            </div>
+            <div>
+              <h4 class="font-semibold text-indigo-700">${user.name}</h4>
+              <p class="text-sm text-gray-600">Level ${user.level}</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="font-bold text-orange-600">${user.xp} XP</div>
+          </div>
+        </div>
+      `).join('');
+      document.getElementById('leaderboard').innerHTML = leaderboardHTML;
+    }
+
+    function displayBadges(badges) {
+      const badgesHTML = Object.keys(badges).map(badgeKey => {
+        const badge = badges[badgeKey];
+        const isEarned = studentData[1]?.earnedBadges?.includes(badgeKey);
+        return `
+          <div class="bg-white rounded-xl shadow-lg p-4 text-center border-2 ${isEarned ? 'border-green-300 bg-green-50' : 'border-gray-200 bg-gray-50'}">
+            <div class="text-4xl mb-3 ${isEarned ? 'text-green-600' : 'text-gray-400'}">${badge.icon}</div>
+            <h4 class="font-semibold text-indigo-700 mb-2">${badge.name}</h4>
+            <p class="text-sm text-gray-600 mb-2">${badge.description}</p>
+            <div class="text-xs text-orange-600 font-semibold">+${badge.xpReward} XP</div>
+          </div>
+        `;
+      }).join('');
+      document.getElementById('badges-collection').innerHTML = badgesHTML;
+    }
+
+    document.getElementById('logout').addEventListener('click', () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      window.location.href = 'index.html';
+    });
+
+    loadDashboard();
+  </script>
+</body>
+</html>

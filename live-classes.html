@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Classes – Study-IQ Classes</title>
+  <meta name="description" content="Join interactive live classes at Study-IQ Classes. AI-powered doubt solving, expert teachers, and real-time learning for CBSE, ICSE, and competitive exams." />
+  <meta name="keywords" content="live classes, online learning, interactive education, AI doubt solver, CBSE, ICSE, NEET, JEE, study platform" />
+  <meta name="author" content="Study-IQ Classes" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <link rel="stylesheet" href="src/input.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+  <style>
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-up { animation: fadeUp 0.7s ease-out forwards; }
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.2s; }
+    .stagger-3 { animation-delay: 0.3s; }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-indigo-50 via-white to-orange-100 font-inter">
+
+  <!-- Navbar -->
+  <nav class="bg-white/90 border-b border-indigo-100 fixed top-0 w-full z-50 shadow">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="index.html" class="text-2xl font-extrabold text-indigo-600 tracking-tight">Study-IQ classes</a>
+      <div class="hidden md:flex gap-8">
+        <a href="index.html" class="font-semibold text-indigo-700 hover:text-orange-600">Home</a>
+        <a href="dout.html" class="font-semibold text-indigo-700 hover:text-orange-600">doubt-solving</a>
+        <a href="course.html" class="font-semibold text-indigo-700 hover:text-orange-600">Courses</a>
+        <a href="live-classes.html" class="font-semibold text-orange-600 border-b-2 border-orange-500">Live Classes</a>
+        <a href="about.html" class="font-semibold text-indigo-700 hover:text-orange-600">About</a>
+        <a href="contact.html" class="font-semibold text-indigo-700 hover:text-orange-600">Contact</a>
+        <a href="login.html" class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white rounded-lg font-bold px-6 py-2 shadow hover:scale-105 transition">Login / Signup</a>
+      </div>
+      <button id="nav-toggle" class="md:hidden text-2xl text-indigo-700 focus:outline-none" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden border-t border-indigo-100 bg-white/95">
+      <div class="px-6 py-3 flex flex-col gap-3">
+        <a href="index.html" class="font-semibold text-indigo-700 hover:text-orange-600">Home</a>
+        <a href="dout.html" class="font-semibold text-indigo-700 hover:text-orange-600">doubt-solving</a>
+        <a href="course.html" class="font-semibold text-indigo-700 hover:text-orange-600">Courses</a>
+        <a href="live-classes.html" class="font-semibold text-orange-600">Live Classes</a>
+        <a href="about.html" class="font-semibold text-indigo-700 hover:text-orange-600">About</a>
+        <a href="contact.html" class="font-semibold text-indigo-700 hover:text-orange-600">Contact</a>
+        <a href="login.html" class="mt-1 bg-gradient-to-r from-orange-500 to-indigo-600 text-white rounded-lg font-bold px-4 py-2 shadow hover:scale-[1.02] transition">Login / Signup</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="pt-32 pb-20 bg-gradient-to-r from-indigo-600 via-purple-600 to-orange-600 text-white relative overflow-hidden">
+    <div class="absolute inset-0 bg-black/20"></div>
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-20"></div>
+    <div class="relative max-w-7xl mx-auto px-6 text-center">
+      <h1 class="text-5xl md:text-7xl font-black mb-6 animate-fade-up">
+        Interactive <span class="text-orange-300">Live Classes</span>
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto animate-fade-up stagger-1">
+        Join real-time classes with expert teachers, instant doubt solving, and interactive learning experiences.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-6 justify-center animate-fade-up stagger-2">
+        <a href="#schedule" class="bg-white text-indigo-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:scale-105 transition">View Schedule</a>
+        <a href="demo.html" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:scale-105 transition">Book Free Demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-20 bg-white" data-animate="fade-up">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center text-indigo-700 mb-16">Why Choose Our Live Classes?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center p-8 bg-gradient-to-br from-indigo-50 to-orange-50 rounded-xl shadow-lg hover:scale-105 transition">
+          <i class="fas fa-video text-5xl text-indigo-600 mb-4"></i>
+          <h3 class="text-2xl font-bold text-indigo-700 mb-4">HD Video Quality</h3>
+          <p class="text-gray-700">Crystal clear video and audio for an immersive learning experience.</p>
+        </div>
+        <div class="text-center p-8 bg-gradient-to-br from-orange-50 to-indigo-50 rounded-xl shadow-lg hover:scale-105 transition">
+          <i class="fas fa-comments text-5xl text-orange-600 mb-4"></i>
+          <h3 class="text-2xl font-bold text-indigo-700 mb-4">Real-time Interaction</h3>
+          <p class="text-gray-700">Ask questions live, participate in polls, and engage with teachers instantly.</p>
+        </div>
+        <div class="text-center p-8 bg-gradient-to-br from-indigo-50 to-orange-50 rounded-xl shadow-lg hover:scale-105 transition">
+          <i class="fas fa-robot text-5xl text-indigo-600 mb-4"></i>
+          <h3 class="text-2xl font-bold text-indigo-700 mb-4">AI Doubt Solver</h3>
+          <p class="text-gray-700">Get instant answers to your questions during and after classes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Class Schedule Section -->
+  <section id="schedule" class="py-20 bg-gradient-to-r from-indigo-50 to-orange-50" data-animate="fade-up">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center text-indigo-700 mb-16">Today's Live Classes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Class Card 1 -->
+        <div class="bg-white rounded-xl shadow-xl p-6 hover:shadow-2xl transition">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-calculator text-2xl text-orange-600 mr-3"></i>
+            <span class="text-sm bg-orange-100 text-orange-700 px-3 py-1 rounded-full">Mathematics</span>
+          </div>
+          <h3 class="text-xl font-bold text-indigo-700 mb-2">Algebra & Geometry</h3>
+          <p class="text-gray-700 mb-4">Master advanced algebraic concepts and geometric theorems.</p>
+          <div class="flex items-center text-sm text-gray-600 mb-4">
+            <i class="fas fa-clock mr-2"></i>
+            <span>10:00 AM - 11:30 AM</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-600 mb-4">
+            <i class="fas fa-user mr-2"></i>
+            <span>Teacher: Mr. Sharma</span>
+          </div>
+          <button class="w-full bg-gradient-to-r from-indigo-500 to-orange-500 text-white py-3 rounded-lg font-bold hover:scale-105 transition">Join Class</button>
+        </div>
+
+        <!-- Class Card 2 -->
+        <div class="bg-white rounded-xl shadow-xl p-6 hover:shadow-2xl transition">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-atom text-2xl text-indigo-600 mr-3"></i>
+            <span class="text-sm bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full">Physics</span>
+          </div>
+          <h3 class="text-xl font-bold text-indigo-700 mb-2">Mechanics & Motion</h3>
+          <p class="text-gray-700 mb-4">Understand Newton's laws and kinematic principles.</p>
+          <div class="flex items-center text-sm text-gray-600 mb-4">
+            <i class="fas fa-clock mr-2"></i>
+            <span>2:00 PM - 3:30 PM</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-600 mb-4">
+            <i class="fas fa-user mr-2"></i>
+            <span>Teacher: Ms. Patel</span>
+          </div>
+          <button class="w-full bg-gradient-to-r from-indigo-500 to-orange-500 text-white py-3 rounded-lg font-bold hover:scale-105 transition">Join Class</button>
+        </div>
+
+        <!-- Class Card 3 -->
+        <div class="bg-white rounded-xl shadow-xl p-6 hover:shadow-2xl transition">
+          <div class="flex items-center mb-4">
+            <i class="fas fa-dna text-2xl text-green-600 mr-3"></i>
+            <span class="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full">Biology</span>
+          </div>
+          <h3 class="text-xl font-bold text-indigo-700 mb-2">Cell Biology</h3>
+          <p class="text-gray-700 mb-4">Explore cellular structures and functions in detail.</p>
+          <div class="flex items-center text-sm text-gray-600 mb-4">
+            <i class="fas fa-clock mr-2"></i>
+            <span>4:00 PM - 5:30 PM</span>
+          </div>
+          <div class="flex items-center text-sm text-gray-600 mb-4">
+            <i class="fas fa-user mr-2"></i>
+            <span>Teacher: Dr. Kumar</span>
+          </div>
+          <button class="w-full bg-gradient-to-r from-indigo-500 to-orange-500 text-white py-3 rounded-lg font-bold hover:scale-105 transition">Join Class</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-20 bg-white" data-animate="fade-up">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center text-indigo-700 mb-16">How Live Classes Work</h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-2xl font-bold">1</span>
+          </div>
+          <h3 class="text-xl font-bold text-indigo-700 mb-4">Register</h3>
+          <p class="text-gray-700">Sign up for your preferred class schedule.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-gradient-to-br from-orange-500 to-orange-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-2xl font-bold">2</span>
+          </div>
+          <h3 class="text-xl font-bold text-indigo-700 mb-4">Join Live</h3>
+          <p class="text-gray-700">Click the join button at class time.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-2xl font-bold">3</span>
+          </div>
+          <h3 class="text-xl font-bold text-indigo-700 mb-4">Interact</h3>
+          <p class="text-gray-700">Ask questions and participate actively.</p>
+        </div>
+        <div class="text-center">
+          <div class="bg-gradient-to-br from-orange-500 to-orange-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+            <span class="text-2xl font-bold">4</span>
+          </div>
+          <h3 class="text-xl font-bold text-indigo-700 mb-4">Review</h3>
+          <p class="text-gray-700">Access recordings and notes anytime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-20 bg-gradient-to-r from-orange-50 to-indigo-50" data-animate="fade-up">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold text-indigo-700 mb-12">What Students Say</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-xl p-8 shadow-xl">
+          <img src="https://randomuser.me/api/portraits/boys/45.jpg" alt="Student" class="w-16 h-16 rounded-full mx-auto mb-4" />
+          <p class="text-gray-800 mb-4">"The live classes are amazing! I can ask questions in real-time and the teachers are very helpful."</p>
+          <span class="font-bold text-indigo-600">Rahul Singh, Class 10</span>
+        </div>
+        <div class="bg-white rounded-xl p-8 shadow-xl">
+          <img src="https://randomuser.me/api/portraits/girls/32.jpg" alt="Student" class="w-16 h-16 rounded-full mx-auto mb-4" />
+          <p class="text-gray-800 mb-4">"Interactive sessions make learning fun. The AI doubt solver is a game-changer!"</p>
+          <span class="font-bold text-orange-600">Priya Sharma, Class 12</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-center" data-animate="fade-up">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-6">Ready to Join Live Classes?</h2>
+      <p class="text-xl mb-8">Experience the future of education with interactive live learning.</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-6">
+        <a href="signup.html" class="bg-white text-indigo-600 px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:scale-105 transition">Start Free Trial</a>
+        <a href="contact.html" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:scale-105 transition">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white/90 border-t border-indigo-100 shadow-md">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row text-center md:text-left justify-between items-center gap-5">
+      <span class="text-gray-600 font-semibold">© 2025 Study-IQ Classes BY RAVINDRA SIR. All rights reserved.</span>
+      <div class="flex gap-4 text-lg">
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById("nav-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (navToggle && mobileMenu) {
+      navToggle.addEventListener("click", () => {
+        const isHidden = mobileMenu.classList.contains("hidden");
+        mobileMenu.classList.toggle("hidden");
+        navToggle.setAttribute("aria-expanded", isHidden ? "true" : "false");
+        navToggle.innerHTML = isHidden
+          ? '<i class="fa-solid fa-xmark"></i>'
+          : '<i class="fa-solid fa-bars"></i>';
+      });
+    }
+  </script>
+</body>
+</html>

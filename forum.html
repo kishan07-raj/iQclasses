@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discussion Forum – Study-IQ Classes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-white to-orange-50 font-inter">
+
+  <!-- Navbar -->
+  <nav class="bg-white/90 border-b border-indigo-100 fixed top-0 w-full z-50 shadow">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="index.html" class="text-2xl font-extrabold text-indigo-600">Study-IQ</a>
+      <div class="flex gap-8">
+        <a href="index.html" class="font-semibold text-indigo-700">Home</a>
+        <a href="course.html" class="font-semibold text-indigo-700">Courses</a>
+        <a href="about.html" class="font-semibold text-indigo-700">About</a>
+        <a href="contact.html" class="font-semibold text-indigo-700">Contact</a>
+        <a href="dashboard.html" class="font-semibold text-indigo-700">Dashboard</a>
+        <button id="logout" class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white rounded-lg font-bold px-6 py-2 shadow hover:scale-105 transition">Logout</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Forum Header -->
+  <section class="pt-32 pb-10 text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="text-5xl font-bold text-indigo-700 mb-3">Discussion Forum</h1>
+      <p class="text-lg text-gray-700 mb-7">Ask questions, share knowledge, and engage with fellow students!</p>
+    </div>
+  </section>
+
+  <!-- Create Post Section -->
+  <section class="py-8">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="bg-white rounded-xl shadow-xl p-8">
+        <h2 class="text-2xl font-bold text-indigo-700 mb-6">Create New Post</h2>
+        <form id="create-post-form">
+          <div class="mb-6">
+            <label class="block text-gray-700 font-semibold mb-2">Title</label>
+            <input type="text" id="post-title" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Enter your question or topic title" required>
+          </div>
+          <div class="mb-6">
+            <label class="block text-gray-700 font-semibold mb-2">Content</label>
+            <textarea id="post-content" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Describe your question or share your thoughts in detail" required></textarea>
+          </div>
+          <div class="mb-6">
+            <label class="block text-gray-700 font-semibold mb-2">Tags (comma-separated)</label>
+            <input type="text" id="post-tags" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="e.g., grammar, english, nouns, verbs" required>
+          </div>
+          <button type="submit" class="bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-8 py-3 rounded-xl font-semibold hover:scale-105 transition">Post Question</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Section -->
+  <section class="py-8">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="bg-white rounded-xl shadow-xl p-6">
+        <h3 class="text-xl font-bold text-indigo-700 mb-4">Filter Posts</h3>
+        <div class="flex flex-wrap gap-4">
+          <input type="text" id="search-input" class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" placeholder="Search posts...">
+          <select id="tag-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="">All Tags</option>
+          </select>
+          <select id="sort-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+            <option value="most-voted">Most Voted</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Posts Section -->
+  <section class="py-8">
+    <div class="max-w-4xl mx-auto px-6">
+      <div id="posts-container" class="space-y-6">
+        <!-- Posts will be loaded here -->
+      </div>
+      <div id="loading" class="text-center py-8">
+        <i class="fas fa-spinner fa-spin text-2xl text-indigo-600"></i>
+        <p class="text-gray-600 mt-2">Loading posts...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teacher Verification Section -->
+  <section id="teacher-verification-section" class="py-8 hidden">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="bg-white rounded-xl shadow-xl p-8">
+        <h2 class="text-2xl font-bold text-indigo-700 mb-6">Pending Posts for Verification</h2>
+        <div id="pending-posts-container" class="space-y-6">
+          <!-- Pending posts will be loaded here -->
+        </div>
+        <div id="pending-loading" class="text-center py-8">
+          <i class="fas fa-spinner fa-spin text-2xl text-indigo-600"></i>
+          <p class="text-gray-600 mt-2">Loading pending posts...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white/90 border-t border-indigo-100 shadow-md mt-8">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row text-center md:text-left justify-between items-center gap-5">
+      <span class="text-gray-600 font-semibold">© 2025 Study-IQ Classes. All rights reserved.</span>
+      <div class="flex gap-4 text-lg">
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    if (!token) {
+      window.location.href = 'login.html';
+    }
+
+    let allPosts = [];
+    let allTags = new Set();
+
+    // Load posts and tags on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPosts();
+      loadTags();
+      if (role === 'teacher') {
+        document.getElementById('teacher-verification-section').style.display = 'block';
+        loadPendingPosts();
+      }
+    });
+
+    // Create post form submission
+    document.getElementById('create-post-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const title = document.getElementById('post-title').value.trim();
+      const content = document.getElementById('post-content').value.trim();
+      const tags = document.getElementById('post-tags').value.split(',').map(tag => tag.trim()).filter(tag => tag);
+
+      if (!title || !content || tags.length === 0) {
+        alert('Please fill in all fields');
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:3000/api/forum/posts', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ title, content, tags })
+        });
+
+        if (response.ok) {
+          document.getElementById('post-title').value = '';
+          document.getElementById('post-content').value = '';
+          document.getElementById('post-tags').value = '';
+          loadPosts();
+          loadTags();
+        } else {
+          alert('Failed to create post');
+        }
+      } catch (error) {
+        console.error('Error creating post:', error);
+      }
+    });
+
+    // Load posts
+    async function loadPosts() {
+      try {
+        const response = await fetch('http://localhost:3000/api/forum/posts', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+          allPosts = await response.json();
+          displayPosts(allPosts);
+        } else {
+          document.getElementById('loading').innerHTML = '<p class="text-gray-600">Failed to load posts</p>';
+        }
+      } catch (error) {
+        console.error('Error loading posts:', error);
+        document.getElementById('loading').innerHTML = '<p class="text-gray-600">Error loading posts</p>';
+      }
+    }
+
+    // Load tags for filter
+    async function loadTags() {
+      try {
+        const response = await fetch('http://localhost:3000/api/forum/posts', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+          const posts = await response.json();
+          allTags = new Set();
+          posts.forEach(post => {
+            post.tags.forEach(tag => allTags.add(tag));
+          });
+          updateTagFilter();
+        }
+      } catch (error) {
+        console.error('Error loading tags:', error);
+      }
+    }
+
+    // Update tag filter dropdown
+    function updateTagFilter() {
+      const tagFilter = document.getElementById('tag-filter');
+      tagFilter.innerHTML = '<option value="">All Tags</option>';
+      Array.from(allTags).sort().forEach(tag => {
+        const option = document.createElement('option');
+        option.value = tag;
+        option.textContent = tag;
+        tagFilter.appendChild(option);
+      });
+    }
+
+    // Display posts
+    function displayPosts(posts) {
+      const container = document.getElementById('posts-container');
+      container.innerHTML = '';
+
+      if (posts.length === 0) {
+        container.innerHTML = '<p class="text-gray-600 text-center py-8">No posts found. Be the first to ask a question!</p>';
+        return;
+      }
+
+      posts.forEach(post => {
+        const postElement = createPostElement(post);
+        container.appendChild(postElement);
+      });
+    }
+
+    // Create post element
+    function createPostElement(post) {
+      const postDiv = document.createElement('div');
+      postDiv.className = 'bg-white rounded-xl shadow-xl p-6';
+      postDiv.innerHTML = `
+        <div class="flex items-start space-x-4">
+          <div class="flex flex-col items-center space-y-2">
+            <button class="vote-btn text-gray-400 hover:text-orange-500" data-post-id="${post.id}" data-vote="up">
+              <i class="fas fa-chevron-up text-xl"></i>
+            </button>
+            <span class="font-bold text-lg text-indigo-600">${post.votes}</span>
+            <button class="vote-btn text-gray-400 hover:text-blue-500" data-post-id="${post.id}" data-vote="down">
+              <i class="fas fa-chevron-down text-xl"></i>
+            </button>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-xl font-bold text-indigo-700 mb-2">${post.title}</h3>
+            <p class="text-gray-700 mb-4">${post.content}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              ${post.tags.map(tag => `<span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">${tag}</span>`).join('')}
+            </div>
+            <div class="flex items-center justify-between text-sm text-gray-600">
+              <span>Posted by <strong>${post.authorName}</strong> on ${new Date(post.createdAt).toLocaleDateString()}</span>
+              <button class="toggle-comments text-indigo-600 hover:text-indigo-800 font-semibold" data-post-id="${post.id}">
+                ${post.comments.length} Comments
+              </button>
+            </div>
+            <div class="comments-section mt-4 hidden" data-post-id="${post.id}">
+              <div class="border-t pt-4">
+                <div class="comments-list space-y-4 mb-4">
+                  ${post.comments.map(comment => `
+                    <div class="bg-gray-50 rounded-lg p-4">
+                      <div class="flex items-start space-x-3">
+                        <div class="flex flex-col items-center space-y-1">
+                          <button class="comment-vote-btn text-gray-400 hover:text-orange-500" data-comment-id="${comment.id}" data-vote="up">
+                            <i class="fas fa-chevron-up text-sm"></i>
+                          </button>
+                          <span class="font-semibold text-sm text-indigo-600">${comment.votes}</span>
+                          <button class="comment-vote-btn text-gray-400 hover:text-blue-500" data-comment-id="${comment.id}" data-vote="down">
+                            <i class="fas fa-chevron-down text-sm"></i>
+                          </button>
+                        </div>
+                        <div class="flex-1">
+                          <p class="text-gray-800">${comment.content}</p>
+                          <div class="text-xs text-gray-600 mt-2">
+                            <strong>${comment.authorName}</strong> • ${new Date(comment.createdAt).toLocaleDateString()}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+                <div class="add-comment">
+                  <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 mb-2" placeholder="Add a comment..." rows="3"></textarea>
+                  <button class="submit-comment bg-gradient-to-r from-orange-500 to-indigo-600 text-white px-4 py-2 rounded-lg font-semibold hover:scale-105 transition" data-post-id="${post.id}">Comment</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Add event listeners
+      postDiv.querySelectorAll('.vote-btn').forEach(btn => {
+        btn.addEventListener('click', handleVote);
+      });
+
+      postDiv.querySelectorAll('.comment-vote-btn').forEach(btn => {
+        btn.addEventListener('click', handleCommentVote);
+      });
+
+      postDiv.querySelector('.toggle-comments').addEventListener('click', toggleComments);
+
+      postDiv.querySelector('.submit-comment').addEventListener('click', handleCommentSubmit);
+
+      return postDiv;
+    }
+
+    // Handle voting
+    async function handleVote(e) {
+      const postId = e.currentTarget.dataset.postId;
+      const voteType = e.currentTarget.dataset.vote;
+
+      try {
+        const response = await fetch(`http://localhost:3000/api/forum/posts/${postId}/vote`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ voteType })
+        });
+
+        if (response.ok) {
+          loadPosts();
+        }
+      } catch (error) {
+        console.error('Error voting:', error);
+      }
+    }
+
+    // Handle comment voting
+    async function handleCommentVote(e) {
+      const commentId = e.currentTarget.dataset.commentId;
+      const voteType = e.currentTarget.dataset.vote;
+
+      try {
+        const response = await fetch(`http://localhost:3000/api/forum/posts/comment/${commentId}/vote`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ voteType })
+        });
+
+        if (response.ok) {
+          loadPosts();
+        }
+      } catch (error) {
+        console.error('Error voting on comment:', error);
+      }
+    }
+
+    // Toggle comments visibility
+    function toggleComments(e) {
+      const postId = e.currentTarget.dataset.postId;
+      const commentsSection = document.querySelector(`.comments-section[data-post-id="${postId}"]`);
+      commentsSection.classList.toggle('hidden');
+    }
+
+    // Handle comment submission
+    async function handleCommentSubmit(e) {
+      const postId = e.currentTarget.dataset.postId;
+      const textarea = e.currentTarget.previousElementSibling;
+      const content = textarea.value.trim();
+
+      if (!content) {
+        alert('Please enter a comment');
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://localhost:3000/api/forum/posts/${postId}/comments`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ content })
+        });
+
+        if (response.ok) {
+          textarea.value = '';
+          loadPosts();
+        } else {
+          alert('Failed to add comment');
+        }
+      } catch (error) {
+        console.error('Error adding comment:', error);
+      }
+    }
+
+    // Filter and search functionality
+    document.getElementById('search-input').addEventListener('input', filterPosts);
+    document.getElementById('tag-filter').addEventListener('change', filterPosts);
+    document.getElementById('sort-filter').addEventListener('change', filterPosts);
+
+    function filterPosts() {
+      const searchTerm = document.getElementById('search-input').value.toLowerCase();
+      const selectedTag = document.getElementById('tag-filter').value;
+      const sortBy = document.getElementById('sort-filter').value;
+
+      let filteredPosts = allPosts.filter(post => {
+        const matchesSearch = post.title.toLowerCase().includes(searchTerm) ||
+                             post.content.toLowerCase().includes(searchTerm) ||
+                             post.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+        const matchesTag = !selectedTag || post.tags.includes(selectedTag);
+        return matchesSearch && matchesTag;
+      });
+
+      // Sort posts
+      filteredPosts.sort((a, b) => {
+        switch (sortBy) {
+          case 'oldest':
+            return new Date(a.createdAt) - new Date(b.createdAt);
+          case 'most-voted':
+            return b.votes - a.votes;
+          default: // newest
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        }
+      });
+
+      displayPosts(filteredPosts);
+    }
+
+    // Load pending posts for teachers
+    async function loadPendingPosts() {
+      try {
+        const response = await fetch('http://localhost:3000/api/forum/pending-posts', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+          const pendingPosts = await response.json();
+          displayPendingPosts(pendingPosts);
+        } else {
+          document.getElementById('pending-loading').innerHTML = '<p class="text-gray-600">Failed to load pending posts</p>';
+        }
+      } catch (error) {
+        console.error('Error loading pending posts:', error);
+        document.getElementById('pending-loading').innerHTML = '<p class="text-gray-600">Error loading pending posts</p>';
+      }
+    }
+
+    // Display pending posts
+    function displayPendingPosts(posts) {
+      const container = document.getElementById('pending-posts-container');
+      container.innerHTML = '';
+
+      if (posts.length === 0) {
+        container.innerHTML = '<p class="text-gray-600 text-center py-8">No pending posts for verification.</p>';
+        return;
+      }
+
+      posts.forEach(post => {
+        const postElement = createPendingPostElement(post);
+        container.appendChild(postElement);
+      });
+    }
+
+    // Create pending post element
+    function createPendingPostElement(post) {
+      const postDiv = document.createElement('div');
+      postDiv.className = 'bg-yellow-50 border border-yellow-200 rounded-xl p-6';
+      postDiv.innerHTML = `
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-indigo-700 mb-2">${post.title}</h3>
+          <p class="text-gray-700 mb-4">${post.content}</p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            ${post.tags.map(tag => `<span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm">${tag}</span>`).join('')}
+          </div>
+          <div class="text-sm text-gray-600 mb-4">
+            Posted by <strong>${post.authorName}</strong> on ${new Date(post.createdAt).toLocaleDateString()}
+          </div>
+          <div class="flex gap-4">
+            <button class="approve-btn bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600" data-post-id="${post.id}">Approve</button>
+            <button class="reject-btn bg-red-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-600" data-post-id="${post.id}">Reject</button>
+          </div>
+        </div>
+      `;
+
+      // Add event listeners
+      postDiv.querySelector('.approve-btn').addEventListener('click', handleVerification);
+      postDiv.querySelector('.reject-btn').addEventListener('click', handleVerification);
+
+      return postDiv;
+    }
+
+    // Handle post verification
+    async function handleVerification(e) {
+      const postId = e.currentTarget.dataset.postId;
+      const action = e.currentTarget.classList.contains('approve-btn') ? 'approve' : 'reject';
+
+      try {
+        const response = await fetch(`http://localhost:3000/api/forum/posts/${postId}/verify`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ action })
+        });
+
+        if (response.ok) {
+          loadPendingPosts();
+          loadPosts(); // Refresh main posts list
+        } else {
+          alert('Failed to verify post');
+        }
+      } catch (error) {
+        console.error('Error verifying post:', error);
+      }
+    }
+
+    // Logout functionality
+    document.getElementById('logout').addEventListener('click', () => {
+      localStorage.removeItem('token');
+      localStorage.removeItem('role');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

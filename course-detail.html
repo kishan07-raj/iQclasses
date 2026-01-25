@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Details – Study-IQ Classes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body class="bg-gradient-to-tr from-indigo-50 via-white to-orange-50 font-inter">
+
+  <!-- Navbar -->
+  <nav class="bg-white/90 border-b border-indigo-100 fixed top-0 w-full z-50 shadow">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="index.html" class="text-2xl font-extrabold text-indigo-600">Study-IQ</a>
+      <div class="flex gap-8">
+        <a href="index.html" class="font-semibold text-indigo-700">Home</a>
+        <a href="course.html" class="font-semibold text-orange-600 border-b-2 border-orange-500">Courses</a>
+        <a href="about.html" class="font-semibold text-indigo-700">About</a>
+        <a href="contact.html" class="font-semibold text-indigo-700">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Course Header -->
+  <section class="pt-32 pb-10 text-center">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 id="course-title" class="text-4xl font-bold text-indigo-700 mb-3">Loading Course...</h1>
+      <p id="course-description" class="text-lg text-gray-700 mb-7">Loading description...</p>
+      <div class="bg-white rounded-lg shadow p-4 mb-6">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm font-semibold text-gray-700">Overall Progress</span>
+          <span id="overall-progress" class="text-sm font-bold text-indigo-600">0%</span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-2">
+          <div id="progress-bar" class="bg-indigo-600 h-2 rounded-full" style="width: 0%"></div>
+        </div>
+      </div>
+      <button id="resume-btn" class="bg-orange-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-600 transition hidden">Resume Learning</button>
+    </div>
+  </section>
+
+  <!-- Course Tabs -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex justify-center mb-8">
+        <div class="bg-white rounded-lg shadow-md p-1">
+          <button id="modules-tab" class="px-6 py-3 rounded-md font-semibold text-indigo-600 bg-indigo-50">Modules</button>
+          <button id="notes-tab" class="px-6 py-3 rounded-md font-semibold text-gray-600 hover:text-indigo-600">Notes</button>
+        </div>
+      </div>
+
+      <!-- Modules Section -->
+      <div id="modules-section">
+        <h2 class="text-2xl font-bold text-orange-600 mb-8 text-center">Course Modules</h2>
+        <div id="modules-container" class="space-y-8">
+          <!-- Modules will be loaded here -->
+        </div>
+      </div>
+
+      <!-- Notes Section -->
+      <div id="notes-section" class="hidden">
+        <h2 class="text-2xl font-bold text-orange-600 mb-8 text-center">Course Notes</h2>
+        <div id="notes-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Notes will be loaded here -->
+        </div>
+        <div id="notes-empty" class="text-center py-12 text-gray-500 hidden">
+          <i class="fas fa-file-alt text-4xl mb-4 text-gray-300"></i>
+          <p class="text-lg">No notes available for this course yet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white/90 border-t border-indigo-100 shadow-md mt-8">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row text-center md:text-left justify-between items-center gap-5">
+      <span class="text-gray-600 font-semibold">© 2025 Study-IQ Classes. All rights reserved.</span>
+      <div class="flex gap-4 text-lg">
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="text-indigo-600 hover:text-orange-500"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const courseId = parseInt(urlParams.get('courseId'));
+    let courseData = null;
+    let modulesData = [];
+    let lessonsData = [];
+    let token = localStorage.getItem('token');
+
+    if (!token) {
+      window.location.href = 'login.html';
+    }
+
+    async function fetchCourse() {
+      try {
+        const response = await fetch(`/api/courses/${courseId}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+          courseData = await response.json();
+          document.getElementById('course-title').textContent = courseData.name;
+          document.getElementById('course-description').textContent = courseData.description;
+          await fetchModules();
+        } else {
+          alert('Failed to load course');
+        }
+      } catch (error) {
+        console.error('Error fetching course:', error);
+      }
+    }
+
+    async function fetchModules() {
+      try {
+        const response = await fetch(`/api/courses/${courseId}/modules`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+          modulesData = await response.json();
+          await fetchLessons();
+          renderModules();
+          updateProgress();
+        }
+      } catch (error) {
+        console.error('Error fetching modules:', error);
+      }
+    }
+
+    async function fetchLessons() {
+      for (const module of modulesData) {
+        try {
+          const response = await fetch(`/api/modules/${module.id}/lessons`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          if (response.ok) {
+            const lessons = await response.json();
+            lessonsData.push(...lessons);
+          }
+        } catch (error) {
+          console.error('Error fetching lessons:', error);
+        }
+      }
+    }
+
+    function renderModules() {
+      const container = document.getElementById('modules-container');
+      container.innerHTML = '';
+
+      modulesData.forEach(module => {
+        const moduleDiv = document.createElement('div');
+        moduleDiv.className = 'bg-white rounded-xl shadow-xl p-7';
+        moduleDiv.innerHTML = `
+          <h3 class="text-xl font-bold text-indigo-700 mb-4">${module.name}</h3>
+          <div class="space-y-4" id="lessons-${module.id}">
+            <!-- Lessons will be rendered here -->
+          </div>
+        `;
+        container.appendChild(moduleDiv);
+
+        const lessonsContainer = document.getElementById(`lessons-${module.id}`);
+        const moduleLessons = lessonsData.filter(l => l.moduleId === module.id);
+
+        moduleLessons.forEach(lesson => {
+          const lessonDiv = document.createElement('div');
+          lessonDiv.className = `flex items-center justify-between p-4 border rounded-lg ${lesson.completed ? 'bg-green-50 border-green-200' : 'bg-gray-50 border-gray-200'}`;
+          lessonDiv.innerHTML = `
+            <div class="flex items-center gap-4">
+              <i class="fas ${getLessonIcon(lesson.type)} text-2xl ${lesson.completed ? 'text-green-600' : 'text-gray-600'}"></i>
+              <div>
+                <h4 class="font-semibold text-gray-800">${lesson.title}</h4>
+                <p class="text-sm text-gray-600">${lesson.type.charAt(0).toUpperCase() + lesson.type.slice(1)}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <button onclick="viewLesson(${lesson.id})" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition">View</button>
+              ${!lesson.completed ? `<button onclick="markCompleted(${lesson.id})" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">Mark Complete</button>` : '<span class="text-green-600 font-semibold">Completed</span>'}
+            </div>
+          `;
+          lessonsContainer.appendChild(lessonDiv);
+        });
+      });
+    }
+
+    function getLessonIcon(type) {
+      switch (type) {
+        case 'video': return 'fa-video';
+        case 'notes': return 'fa-file-pdf';
+        case 'practice': return 'fa-pencil-alt';
+        case 'quiz': return 'fa-question-circle';
+        default: return 'fa-file';
+      }
+    }
+
+    function viewLesson(lessonId) {
+      const lesson = lessonsData.find(l => l.id === lessonId);
+      if (lesson) {
+        if (lesson.type === 'video') {
+          window.open(lesson.content, '_blank');
+        } else if (lesson.type === 'notes') {
+          window.open(lesson.content, '_blank');
+        } else if (lesson.type === 'practice') {
+          alert('Practice questions: ' + lesson.content.join('\n'));
+        } else if (lesson.type === 'quiz') {
+          alert('Quiz questions: ' + JSON.stringify(lesson.content.questions));
+        }
+      }
+    }
+
+    async function markCompleted(lessonId) {
+      try {
+        const response = await fetch('/api/progress/lesson', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ lessonId, completed: true })
+        });
+        if (response.ok) {
+          const lesson = lessonsData.find(l => l.id === lessonId);
+          if (lesson) lesson.completed = true;
+          renderModules();
+          updateProgress();
+        }
+      } catch (error) {
+        console.error('Error marking lesson complete:', error);
+      }
+    }
+
+    function updateProgress() {
+      const totalLessons = lessonsData.length;
+      const completedLessons = lessonsData.filter(l => l.completed).length;
+      const progressPercent = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
+
+      document.getElementById('overall-progress').textContent = `${progressPercent}%`;
+      document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+      // Update resume button
+      const lastIncompleteLesson = lessonsData.find(l => !l.completed);
+      if (lastIncompleteLesson) {
+        document.getElementById('resume-btn').classList.remove('hidden');
+        document.getElementById('resume-btn').onclick = () => viewLesson(lastIncompleteLesson.id);
+      }
+    }
+
+    // Tab switching functionality
+    document.getElementById('modules-tab').addEventListener('click', () => {
+      document.getElementById('modules-section').classList.remove('hidden');
+      document.getElementById('notes-section').classList.add('hidden');
+      document.getElementById('modules-tab').classList.add('text-indigo-600', 'bg-indigo-50');
+      document.getElementById('modules-tab').classList.remove('text-gray-600');
+      document.getElementById('notes-tab').classList.remove('text-indigo-600', 'bg-indigo-50');
+      document.getElementById('notes-tab').classList.add('text-gray-600');
+    });
+
+    document.getElementById('notes-tab').addEventListener('click', () => {
+      document.getElementById('modules-section').classList.add('hidden');
+      document.getElementById('notes-section').classList.remove('hidden');
+      document.getElementById('notes-tab').classList.add('text-indigo-600', 'bg-indigo-50');
+      document.getElementById('notes-tab').classList.remove('text-gray-600');
+      document.getElementById('modules-tab').classList.remove('text-indigo-600', 'bg-indigo-50');
+      document.getElementById('modules-tab').classList.add('text-gray-600');
+      fetchNotes();
+    });
+
+    async function fetchNotes() {
+      try {
+        const response = await fetch(`/api/courses/${courseId}/notes`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+          const notes = await response.json();
+          renderNotes(notes);
+        }
+      } catch (error) {
+        console.error('Error fetching notes:', error);
+      }
+    }
+
+    function renderNotes(notes) {
+      const container = document.getElementById('notes-container');
+      const emptyState = document.getElementById('notes-empty');
+
+      if (notes.length === 0) {
+        container.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      container.innerHTML = '';
+
+      notes.forEach(note => {
+        const noteCard = document.createElement('div');
+        noteCard.className = 'bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition';
+        noteCard.innerHTML = `
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <i class="fas fa-file-alt text-3xl text-indigo-600"></i>
+              <div>
+                <h3 class="font-bold text-lg text-gray-800">${note.title}</h3>
+                <p class="text-sm text-gray-600">${note.subject} • ${note.class}</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="text-sm text-gray-500">
+              <i class="fas fa-calendar-alt mr-1"></i>
+              ${new Date(note.uploadDate).toLocaleDateString()}
+            </div>
+            <div class="flex gap-2">
+              <button onclick="viewNote('${note.filePath}')" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition text-sm">
+                <i class="fas fa-eye mr-1"></i>View
+              </button>
+              <button onclick="downloadNote('${note.filePath}', '${note.fileName}')" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition text-sm">
+                <i class="fas fa-download mr-1"></i>Download
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(noteCard);
+      });
+    }
+
+    function viewNote(filePath) {
+      window.open(filePath, '_blank');
+    }
+
+    function downloadNote(filePath, fileName) {
+      const link = document.createElement('a');
+      link.href = filePath;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    fetchCourse();
+  </script>
+
+</body>
+</html>

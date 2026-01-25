@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signup – Study-IQ Classes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 via-orange-50 to-white min-h-screen font-inter flex items-center justify-center">
+  <div class="max-w-md w-full mx-auto bg-white/90 rounded-xl shadow-xl p-8 border border-indigo-100">
+    <h3 class="text-3xl font-bold text-indigo-800 mb-8 text-center">Signup to Study-IQ</h3>
+    <form id="signupForm" class="space-y-6">
+      <div>
+        <label class="block mb-2 font-semibold text-gray-700" for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="w-full px-5 py-3 border border-indigo-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 text-lg"
+          placeholder="Your Email"
+          required
+        >
+      </div>
+      <div>
+        <label class="block mb-2 font-semibold text-gray-700" for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="w-full px-5 py-3 border border-indigo-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 text-lg"
+          placeholder="Your Password"
+          required
+        >
+      </div>
+      <div>
+        <label class="block mb-2 font-semibold text-gray-700" for="role">Role</label>
+        <select
+          id="role"
+          class="w-full px-5 py-3 border border-indigo-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-400 text-lg"
+          required
+        >
+          <option value="">Select Role</option>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <button
+        type="submit"
+        class="w-full bg-gradient-to-r from-orange-500 to-indigo-600 text-white font-bold py-3 rounded-xl shadow-lg hover:scale-105 transition"
+      >Signup</button>
+    </form>
+    <div id="message" class="mt-4 text-center text-red-500"></div>
+    <div class="mt-8 text-center">
+      <span class="text-gray-700">Already have an account?</span>
+      <a href="login.html" class="text-orange-600 font-bold ml-1 hover:underline">Login</a>
+    </div>
+    <script>
+      document.getElementById('signupForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const role = document.getElementById('role').value;
+        const response = await fetch('http://localhost:3000/api/signup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password, role })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          document.getElementById('message').textContent = 'Signup successful! Please login.';
+          document.getElementById('message').className = 'mt-4 text-center text-green-500';
+        } else {
+          document.getElementById('message').textContent = data.message;
+        }
+      });
+    </script>
+  </div>
+</body>
+</html>

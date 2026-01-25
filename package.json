@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "tailwind-html-project",
   "version": "1.0.0",
@@ -9,4 +10,17 @@
     "postcss": "^8.4.0",
     "autoprefixer": "^10.4.0"
   }
+=======
+{
+  "name": "tailwind-html-project",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tailwindcss -i ./style.css -o ./dist/output.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0"
+  }
+>>>>>>> 67eeeaf0d28c95fd850c5e26dd6d2db20ee3529c
 }
