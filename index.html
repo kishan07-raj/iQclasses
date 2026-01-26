@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
   <!-- Tailwind CSS CDN (for best design, fast demo) -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
   <!-- AOS Animation Library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -28,6 +30,33 @@
     }
     .animate-fade-up {
       animation: fadeUp 0.7s ease-out forwards;
+    }
+
+    /* Brand colors and consistent styles */
+    :root {
+      --brand-indigo: #4F46E5;
+      --brand-orange: #F97316;
+    }
+
+    .btn-cinematic {
+      background: linear-gradient(to right, var(--brand-orange), var(--brand-indigo));
+      color: white;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      transition: transform 0.2s;
+    }
+
+    .btn-cinematic:hover {
+      transform: scale(1.05);
+    }
+
+    .card-cinematic {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border: 1px solid rgba(79, 70, 229, 0.2);
     }
   </style>
 </head>
@@ -446,8 +475,8 @@
           Fast doubt-solving, live classes, quizzes & badges—now in one place. Trusted by 50,000+ students.
         </p>
         <div class="flex gap-4 justify-center md:justify-start mb-6">
-          <a href="demo.html" class="bg-orange-500 text-white px-6 py-3 rounded-xl font-bold shadow hover:bg-red-600 transition">Join Free Demo</a>
-          <a href="dout.html" class="bg-indigo-600 text-white px-6 py-3 rounded-xl font-bold shadow hover:bg-indigo-800 transition">Ask a Doubt</a>
+          <a href="demo.html" class="btn-cinematic">Join Free Demo</a>
+          <a href="dout.html" class="btn-cinematic">Ask a Doubt</a>
         </div>
         <div class="mt-4 flex gap-2 justify-center md:justify-start">
           <span class="bg-green-100 text-green-700 px-4 py-1 rounded-full font-semibold shadow">🔥 Badges Earned</span>
@@ -457,6 +486,32 @@
       <div class="flex-1 flex justify-center items-center mt-10 md:mt-0">
         <!-- Replace with your image/Lottie animation -->
         <img src="src/images/kishan5.png" alt="Student sitting at a desk using a laptop and taking notes, wearing headphones and appearing focused and engaged; bright home study area with soft natural light and a blurred background; no visible text" class="w-80 md:w-96 rounded-3xl shadow-xl">
+      </div>
+    </div>
+  </section>
+
+  <!-- Statistics Section -->
+  <section class="py-16 bg-gradient-to-r from-indigo-600 to-orange-600 text-white"
+           data-animate="fade-up">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">Our Impact in Numbers</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="card-cinematic p-6">
+          <div class="text-4xl font-extrabold text-indigo-600 mb-2" data-target="50000">0</div>
+          <p class="text-gray-700 font-semibold">Happy Students</p>
+        </div>
+        <div class="card-cinematic p-6">
+          <div class="text-4xl font-extrabold text-indigo-600 mb-2" data-target="1000000">0</div>
+          <p class="text-gray-700 font-semibold">Doubts Solved</p>
+        </div>
+        <div class="card-cinematic p-6">
+          <div class="text-4xl font-extrabold text-indigo-600 mb-2" data-target="50000">0</div>
+          <p class="text-gray-700 font-semibold">Live Classes</p>
+        </div>
+        <div class="card-cinematic p-6">
+          <div class="text-4xl font-extrabold text-indigo-600 mb-2" data-target="95">0</div>
+          <p class="text-gray-700 font-semibold">Success Rate</p>
+        </div>
       </div>
     </div>
   </section>
@@ -590,29 +645,29 @@
       <h2 class="text-2xl font-bold text-center text-orange-600 mb-8">Popular Courses</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         <!-- Example course cards -->
-        <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
+        <div class="card-cinematic p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
           <img src="https://images.unsplash.com/photo-1581092334904-1e7e8ce7a418?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
           <h4 class="text-lg font-bold text-indigo-700 mb-2">Maths Booster</h4>
           <p class="text-gray-700 text-sm mb-3">Board + Olympiad ke best modules.</p>
-          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+          <a href="#" class="mt-auto btn-cinematic">Explore Course</a>
         </div>
-        <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
+        <div class="card-cinematic p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
           <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
           <h4 class="text-lg font-bold text-indigo-700 mb-2">NEET Prep</h4>
           <p class="text-gray-700 text-sm mb-3">Bio/Chemistry crash AI study set.</p>
-          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+          <a href="#" class="mt-auto btn-cinematic">Explore Course</a>
         </div>
-        <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
+        <div class="card-cinematic p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
           <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
           <h4 class="text-lg font-bold text-indigo-700 mb-2">Science Genius</h4>
           <p class="text-gray-700 text-sm mb-3">Physics, coding, tech foundation.</p>
-          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+          <a href="#" class="mt-auto btn-cinematic">Explore Course</a>
         </div>
-        <div class="bg-white rounded-xl shadow-xl p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
+        <div class="card-cinematic p-6 flex flex-col hover:border-orange-500 border-2 border-transparent transition">
           <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80" alt="Course" class="w-full h-32 object-cover rounded-lg mb-4" />
           <h4 class="text-lg font-bold text-indigo-700 mb-2">Coding for Kids</h4>
           <p class="text-gray-700 text-sm mb-3">Start to code—fun games, challenge.</p>
-          <a href="#" class="mt-auto bg-orange-500 text-white px-4 py-2 rounded font-semibold hover:bg-orange-700 transition">Explore Course</a>
+          <a href="#" class="mt-auto btn-cinematic">Explore Course</a>
         </div>
       </div>
     </div>
